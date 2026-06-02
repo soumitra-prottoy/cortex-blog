@@ -14,7 +14,7 @@ export const categories: Category[] = [
 export const blogPosts: BlogPost[] = [
   {
     slug: 'best-free-ai-tools-2025',
-    image: '/thumbnails/best-free-ai-tools-2025.svg',
+    image: '/thumbnails/best-free-ai-tools-2025.png',
     title: '15 Best Free AI Tools You Should Be Using in 2025',
     description: 'A curated collection of the most powerful free AI tools available today — from writing assistants to image generators, all without spending a dime.',
     category: 'ai-tools',
@@ -78,7 +78,7 @@ The AI tool landscape changes fast. Tools that are great today might be replaced
   },
   {
     slug: 'claude-vs-gemini-comparison',
-    image: '/thumbnails/claude-vs-gemini-comparison.svg',
+    image: '/thumbnails/claude-vs-gemini-comparison.png',
     title: 'Claude vs Gemini: Which AI Assistant Is Right for You?',
     description: 'An in-depth comparison of Claude and Gemini — covering capabilities, pricing, strengths, and ideal use cases so you can pick the right one.',
     category: 'comparisons',
@@ -162,7 +162,7 @@ You do not have to choose one. Having both costs nothing. Use the right tool for
   },
   {
     slug: 'ollama-vs-lm-studio-local-ai',
-    image: '/thumbnails/ollama-vs-lm-studio-local-ai.svg',
+    image: '/thumbnails/ollama-vs-lm-studio-local-ai.png',
     title: 'Ollama vs LM Studio: The Best Way to Run AI Locally',
     description: 'Compare the two most popular tools for running large language models on your own hardware — setup, features, and which one suits you.',
     category: 'local-ai',
@@ -222,7 +222,7 @@ You can actually use both. Many power users run Ollama as their backend for its 
   },
   {
     slug: 'getting-started-with-ai-agents',
-    image: '/thumbnails/getting-started-with-ai-agents.svg',
+    image: '/thumbnails/getting-started-with-ai-agents.png',
     title: 'Getting Started with AI Agents: A Beginner\'s Guide',
     description: 'Learn what AI agents are, how they work, and how to start building your own — no prior experience required.',
     category: 'beginner-guides',
@@ -290,7 +290,7 @@ The possibilities are genuinely limitless, and the tools are more accessible tha
   },
   {
     slug: 'ai-automation-workflows-guide',
-    image: '/thumbnails/ai-automation-workflows-guide.svg',
+    image: '/thumbnails/ai-automation-workflows-guide.png',
     title: '10 AI Automation Workflows That Save Hours Every Week',
     description: 'Practical automation workflows using AI tools that can save you 10+ hours per week — from email management to content creation.',
     category: 'automation',
@@ -354,7 +354,7 @@ Do not try to implement all 10 workflows at once. Pick the one that addresses yo
   },
   {
     slug: 'open-source-ai-models-guide',
-    image: '/thumbnails/open-source-ai-models-guide.svg',
+    image: '/thumbnails/open-source-ai-models-guide.png',
     title: 'The Complete Guide to Open-Source AI Models in 2025',
     description: 'Explore the best open-source AI models available today — from LLMs to image generators — and learn how to use them.',
     category: 'open-source',
@@ -414,7 +414,7 @@ We believe that within two years, open-source models will match or exceed the be
   },
   {
     slug: 'hermes-vs-openmanus-ai-agents',
-    image: '/thumbnails/hermes-vs-openmanus-ai-agents.svg',
+    image: '/thumbnails/hermes-vs-openmanus-ai-agents.png',
     title: 'Hermes vs OpenManus: Which Open-Source AI Agent Wins?',
     description: 'A detailed comparison of two popular open-source AI agent frameworks — Hermes and OpenManus — covering features, setup, and real-world usage.',
     category: 'comparisons',
@@ -488,7 +488,7 @@ Both projects are open source and free, so trying both costs nothing but time. T
   },
   {
     slug: 'build-ai-blog-nextjs',
-    image: '/thumbnails/build-ai-blog-nextjs.svg',
+    image: '/thumbnails/build-ai-blog-nextjs.png',
     title: 'How to Build an AI-Powered Blog with Next.js and Vercel',
     description: 'Step-by-step tutorial on building a modern AI blog using Next.js, Tailwind CSS, and Vercel — complete with AI content generation.',
     category: 'tutorials',
@@ -557,7 +557,7 @@ Building a blog with modern tools is faster and easier than ever. The most impor
   },
   {
     slug: 'ai-for-content-creators',
-    image: '/thumbnails/ai-for-content-creators.svg',
+    image: '/thumbnails/ai-for-content-creators.png',
     title: 'How AI Is Transforming Content Creation in 2025',
     description: 'From blog posts to social media, discover how AI tools are revolutionizing content creation for creators of all levels.',
     category: 'blogging-with-ai',
@@ -623,7 +623,7 @@ AI is not replacing content creators. It is enabling them. Use AI to handle the 
   },
   {
     slug: 'beginner-roadmap-learn-ai',
-    image: '/thumbnails/beginner-roadmap-learn-ai.svg',
+    image: '/thumbnails/beginner-roadmap-learn-ai.png',
     title: 'The Complete Beginner\'s Roadmap to Learning AI in 2025',
     description: 'A structured learning path for anyone starting their AI journey — from absolute beginner to building real AI applications.',
     category: 'beginner-guides',
