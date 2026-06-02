@@ -39,13 +39,19 @@ function PostCard({ post }: { post: BlogPost }) {
       href={`/blog/${post.slug}`}
       className="group flex flex-col rounded-2xl border border-neutral-100 bg-white overflow-hidden transition-all duration-300 hover:border-neutral-200 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700"
     >
-      <div className={`relative h-44 overflow-hidden bg-gradient-to-br ${catGradients[post.category] || 'from-neutral-100 to-neutral-50 dark:from-neutral-800 dark:to-neutral-900'}`}>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-neutral-400/40 dark:text-neutral-500/40">
-            {catIcons[post.category] || <BookOpen className="h-7 w-7" />}
-          </div>
-        </div>
-        {post.trending && (
+      <div className="relative h-44 overflow-hidden">
+          {post.image ? (
+            <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+          ) : (
+            <div className={`w-full h-full bg-gradient-to-br ${catGradients[post.category] || 'from-neutral-100 to-neutral-50 dark:from-neutral-800 dark:to-neutral-900'}`}>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-neutral-400/40 dark:text-neutral-500/40">
+                  {catIcons[post.category] || <BookOpen className="h-7 w-7" />}
+                </div>
+              </div>
+            </div>
+          )}
+          {post.trending && (
           <div className="absolute top-3 left-3">
             <Badge className="bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800">
               <TrendingUp className="mr-1 h-3 w-3" />

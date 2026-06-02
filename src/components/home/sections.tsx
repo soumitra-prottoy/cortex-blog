@@ -44,13 +44,19 @@ function PostCard({ post, featured = false }: { post: BlogPost; featured?: boole
         href={`/blog/${post.slug}`}
         className="group block rounded-2xl border border-neutral-100 bg-white overflow-hidden transition-all duration-300 hover:border-neutral-200 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700"
       >
-        {/* Image placeholder */}
-        <div className={`relative overflow-hidden bg-gradient-to-br ${categoryGradients[post.category] || 'from-neutral-100 to-neutral-50 dark:from-neutral-800 dark:to-neutral-900'} ${featured ? 'h-56' : 'h-44'}`}>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-neutral-400/40 dark:text-neutral-500/40">
-              {categoryIcons[post.category] || <BookOpen className="h-8 w-8" />}
+        {/* Thumbnail */}
+        <div className={`relative overflow-hidden ${featured ? 'h-56' : 'h-44'}`}>
+          {post.image ? (
+            <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+          ) : (
+            <div className={`w-full h-full bg-gradient-to-br ${categoryGradients[post.category] || 'from-neutral-100 to-neutral-50 dark:from-neutral-800 dark:to-neutral-900'}`}>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-neutral-400/40 dark:text-neutral-500/40">
+                  {categoryIcons[post.category] || <BookOpen className="h-8 w-8" />}
+                </div>
+              </div>
             </div>
-          </div>
+          )}
           {post.trending && (
             <div className="absolute top-4 left-4">
               <Badge className="bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800">

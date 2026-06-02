@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
       publishedTime: post.date,
       authors: [post.author],
       tags: post.tags,
+      images: post.image ? [post.image] : undefined,
     },
   };
 }
@@ -52,6 +53,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <article className="bg-white dark:bg-neutral-950">
+      {post.image && (
+        <div className="w-full h-64 sm:h-80 overflow-hidden">
+          <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+        </div>
+      )}
       <section className="border-b border-neutral-100 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900/50">
         <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
           <Link
