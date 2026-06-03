@@ -66,8 +66,8 @@ export function HeroSection() {
         />
       </div>
 
-      {/* Light mode: subtle gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-neutral-100/80 via-white to-white dark:from-transparent dark:via-transparent dark:to-transparent pointer-events-none" />
+      {/* Light mode: subtle gradient background — not covering canvas */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-transparent dark:from-transparent pointer-events-none z-[1]" />
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">

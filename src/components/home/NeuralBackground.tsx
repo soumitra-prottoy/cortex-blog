@@ -47,7 +47,7 @@ export default function NeuralBackground() {
     canvas.style.height = `${h}px`;
     ctx.scale(dpr, dpr);
 
-    const isDark = document.documentElement.classList.contains('dark');
+    const dark = document.documentElement.classList.contains('dark');
 
     const nodeCount = Math.max(55, Math.floor((w * h) / 20000));
     const nodes: Node[] = [];
@@ -72,13 +72,11 @@ export default function NeuralBackground() {
 
     function spawnParticle() {
       if (particles.length >= maxParticles) return;
-      const angle = Math.random() * Math.PI * 2;
-      const speed = 0.05 + Math.random() * 0.12;
       particles.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
         life: 0,
         maxLife: 500 + Math.random() * 700,
         size: 0.8 + Math.random() * 1.8,
@@ -92,12 +90,23 @@ export default function NeuralBackground() {
     function draw() {
       if (!ctx) return;
       time += 1;
-      const dark = document.documentElement.classList.contains('dark');
+      const isDark = document.documentElement.classList.contains('dark');
 
-      ctx.clearRect(0, 0, w, h);
+      // Fill background — in light mode use a subtle dark gradient so nodes are visible
+      if (isDark) {
+        ctx.clearRect(0, 0, w, h);
+      } else {
+        // Light mode: subtle dark-to-mid gradient gives nodes contrast
+        const bgGrad = ctx.createLinearGradient(0, 0, 0, h);
+        bgGrad.addColorStop(0, 'rgba(240, 242, 247, 0.95)');
+        bgGrad.addColorStop(0.5, 'rgba(230, 233, 240, 0.9)');
+        bgGrad.addColorStop(1, 'rgba(220, 224, 232, 0.85)');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, w, h);
+      }
 
-      // Background glow orbs — slow drift, only visible in dark mode
-      if (dark) {
+      // Background glow orbs — dark mode only
+      if (isDark) {
         const drawOrb = (ox: number, oy: number, r: number, hue: number, alpha: number) => {
           const driftX = Math.sin(time * 0.002 + ox * 0.0003) * 50;
           const driftY = Math.cos(time * 0.0025 + oy * 0.0003) * 35;
@@ -113,7 +122,7 @@ export default function NeuralBackground() {
         drawOrb(w * 0.5, h * 0.8, w * 0.35, 280, 0.08);
       }
 
-      // Mouse glow — subtle in both modes
+      // Mouse glow
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
       const mouseActive = mouseRef.current.active;
@@ -121,8 +130,8 @@ export default function NeuralBackground() {
       if (mouseActive) {
         const spotR = Math.min(w, h) * 0.35;
         const spot = ctx.createRadialGradient(mx, my, 0, mx, my, spotR);
-        spot.addColorStop(0, `hsla(250, 70%, 65%, ${dark ? 0.06 : 0.03})`);
-        spot.addColorStop(0.5, `hsla(240, 60%, 55%, ${dark ? 0.03 : 0.015})`);
+        spot.addColorStop(0, `hsla(250, 70%, 65%, ${isDark ? 0.06 : 0.04})`);
+        spot.addColorStop(0.5, `hsla(240, 60%, 55%, ${isDark ? 0.03 : 0.02})`);
         spot.addColorStop(1, `hsla(230, 50%, 50%, 0)`);
         ctx.fillStyle = spot;
         ctx.fillRect(mx - spotR, my - spotR, spotR * 2, spotR * 2);
@@ -140,7 +149,7 @@ export default function NeuralBackground() {
           if (dist < connectionDist) {
             const alpha = 1 - dist / connectionDist;
             const wave = Math.sin(time * 0.006 + dist * 0.002) * 0.5 + 0.5;
-            const lineAlpha = alpha * (dark ? 0.18 : 0.1) * (wave * 0.3 + 0.7);
+            const lineAlpha = alpha * (isDark ? 0.18 : 0.25) * (wave * 0.3 + 0.7);
 
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -150,20 +159,19 @@ export default function NeuralBackground() {
             ctx.quadraticCurveTo(midX, midY, b.x, b.y);
 
             const avgHue = (a.hue + b.hue) / 2;
-            ctx.strokeStyle = `hsla(${avgHue}, 50%, ${dark ? 65 : 48}%, ${lineAlpha})`;
-            ctx.lineWidth = dark ? 0.5 : 0.4;
+            ctx.strokeStyle = `hsla(${avgHue}, 55%, ${isDark ? 65 : 35}%, ${lineAlpha})`;
+            ctx.lineWidth = isDark ? 0.5 : 0.6;
             ctx.stroke();
           }
         }
       }
 
-      // Update and draw nodes — random walk, no orbit
+      // Update and draw nodes
       for (const node of nodes) {
         node.pulsePhase += node.pulseSpeed;
         node.radius = node.baseRadius + Math.sin(node.pulsePhase) * 0.8;
 
-        // Perlin-like random drift using sine waves at different frequencies
-        // This gives smooth random-looking movement that covers the whole canvas
+        // Perlin-like random drift
         const noiseX = Math.sin(time * 0.003 + node.pulsePhase * 7.3) * 0.15
                      + Math.sin(time * 0.007 + node.pulsePhase * 3.7) * 0.1;
         const noiseY = Math.cos(time * 0.004 + node.pulsePhase * 5.1) * 0.15
@@ -172,7 +180,7 @@ export default function NeuralBackground() {
         node.vx += noiseX;
         node.vy += noiseY;
 
-        // Mouse nudge — soft push away
+        // Mouse nudge
         if (mouseActive) {
           const mdx = node.x - mx;
           const mdy = node.y - my;
@@ -184,11 +192,9 @@ export default function NeuralBackground() {
           }
         }
 
-        // Damping — keeps velocity bounded
         node.vx *= 0.97;
         node.vy *= 0.97;
 
-        // Clamp max speed
         const speed = Math.sqrt(node.vx * node.vx + node.vy * node.vy);
         if (speed > 1.5) {
           node.vx = (node.vx / speed) * 1.5;
@@ -198,18 +204,18 @@ export default function NeuralBackground() {
         node.x += node.vx;
         node.y += node.vy;
 
-        // Wrap around edges — seamless, no hard boundaries
+        // Wrap around edges
         if (node.x < -30) node.x = w + 25;
         if (node.x > w + 30) node.x = -25;
         if (node.y < -30) node.y = h + 25;
         if (node.y > h + 30) node.y = -25;
 
         // Draw glow
-        const glowR = node.radius * (dark ? 8 : 5);
+        const glowR = node.radius * (isDark ? 8 : 6);
         const glow = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, glowR);
-        glow.addColorStop(0, `hsla(${node.hue}, 60%, ${dark ? 68 : 52}%, ${dark ? 0.22 : 0.12})`);
-        glow.addColorStop(0.5, `hsla(${node.hue}, 50%, ${dark ? 58 : 42}%, ${dark ? 0.07 : 0.04})`);
-        glow.addColorStop(1, `hsla(${node.hue}, 40%, 50%, 0)`);
+        glow.addColorStop(0, `hsla(${node.hue}, 65%, ${isDark ? 68 : 40}%, ${isDark ? 0.22 : 0.35})`);
+        glow.addColorStop(0.5, `hsla(${node.hue}, 55%, ${isDark ? 58 : 32}%, ${isDark ? 0.07 : 0.15})`);
+        glow.addColorStop(1, `hsla(${node.hue}, 45%, 50%, 0)`);
         ctx.fillStyle = glow;
         ctx.beginPath();
         ctx.arc(node.x, node.y, glowR, 0, Math.PI * 2);
@@ -218,7 +224,7 @@ export default function NeuralBackground() {
         // Draw core
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${node.hue}, 55%, ${dark ? 72 : 45}%, ${dark ? 0.75 : 0.5})`;
+        ctx.fillStyle = `hsla(${node.hue}, 60%, ${isDark ? 72 : 32}%, ${isDark ? 0.75 : 0.85})`;
         ctx.fill();
       }
 
@@ -240,16 +246,16 @@ export default function NeuralBackground() {
         const lifeRatio = p.life / p.maxLife;
         const fadeIn = Math.min(lifeRatio * 4, 1);
         const fadeOut = Math.max(1 - (lifeRatio - 0.65) / 0.35, 0);
-        const alpha = fadeIn * Math.min(1, fadeOut) * (dark ? 0.4 : 0.22);
+        const alpha = fadeIn * Math.min(1, fadeOut) * (isDark ? 0.4 : 0.5);
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue}, 55%, ${dark ? 68 : 50}%, ${alpha})`;
+        ctx.fillStyle = `hsla(${p.hue}, 55%, ${isDark ? 68 : 38}%, ${alpha})`;
         ctx.fill();
       }
 
       // Vignette only in dark mode
-      if (dark) {
+      if (isDark) {
         const vigGrad = ctx.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.3, w / 2, h / 2, Math.max(w, h) * 0.6);
         vigGrad.addColorStop(0, 'rgba(0,0,0,0)');
         vigGrad.addColorStop(1, 'rgba(0,0,0,0.25)');
@@ -306,7 +312,7 @@ export default function NeuralBackground() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 pointer-events-none"
-      style={{ zIndex: 0, opacity: 1 }}
+      style={{ zIndex: 0 }}
       aria-hidden="true"
     />
   );
