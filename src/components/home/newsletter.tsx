@@ -57,7 +57,7 @@ export function NewsletterSection() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="mt-8 glass-card rounded-2xl p-6"
+              <div className="mt-8 rounded-2xl p-6 bg-white border border-neutral-200 shadow-sm dark:bg-white/10 dark:border-white/10">
             >
               <CheckCircle className="mx-auto h-8 w-8 text-emerald-500" />
               <p className="mt-3 text-lg font-semibold text-neutral-900 dark:text-white">
@@ -75,7 +75,7 @@ export function NewsletterSection() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="glass-card w-full sm:flex-1 h-12 rounded-xl px-4 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 dark:text-white dark:placeholder:text-neutral-500"
+                className="w-full sm:flex-1 h-12 rounded-xl px-4 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 bg-white border border-neutral-200 shadow-sm dark:bg-white/10 dark:text-white dark:placeholder:text-neutral-500 dark:border-white/10"
               />
               <button
                 type="submit"
