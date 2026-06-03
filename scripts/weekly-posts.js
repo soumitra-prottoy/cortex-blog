@@ -221,6 +221,7 @@ async function run() {
       readTime: '8 min read',
       featured: i === 0,
       trending: i < 2,
+      image: `/thumbnails/${slug}.png`,
       content,
     });
     
@@ -239,6 +240,7 @@ async function run() {
     const escContent = escapeTS(p.content);
     return `  {
     slug: '${p.slug}',
+    image: '${p.image}',
     title: '${escTitle}',
     description: '${escDesc}',
     category: '${p.category}',
