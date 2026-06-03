@@ -3,14 +3,14 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
+import NeuralBackground from '@/components/home/NeuralBackground';
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
 });
-
-import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://cortex.vercel.app'),
@@ -49,14 +49,18 @@ export default function RootLayout({
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" />
+        <GoogleAnalytics />
       </head>
       <body className="min-h-screen bg-white font-sans text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100">
-        <GoogleAnalytics />
-        <Header />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        <NeuralBackground />
+        <div className="noise-overlay" />
+        <div className="relative z-10">
+          <Header />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

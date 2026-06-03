@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { HeroSection, FeaturedPostsSection } from '@/components/home/hero';
-import { RecentPostsSection } from '@/components/home/sections';
+import { HeroSection } from '@/components/home/hero';
+import { FeaturedPostsSection, RecentPostsSection } from '@/components/home/sections';
 import RoadmapsSection from '@/components/home/roadmaps';
 import { NewsletterSection } from '@/components/home/newsletter';
 

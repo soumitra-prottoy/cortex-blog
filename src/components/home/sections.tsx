@@ -2,32 +2,33 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock, TrendingUp, Wrench, BookOpen, GraduationCap, GitCompare, Cpu, Zap, PenTool, Code, Search } from 'lucide-react';
+import { ArrowRight, Clock, TrendingUp, Wrench, BookOpen, GraduationCap, GitCompare, Cpu, Zap, PenTool, Code } from 'lucide-react';
 
 const categoryGradients: Record<string, string> = {
-  'ai-tools': 'from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900',
-  'tutorials': 'from-emerald-50 to-teal-100 dark:from-emerald-950 dark:to-teal-900',
-  'beginner-guides': 'from-amber-50 to-orange-100 dark:from-amber-950 dark:to-orange-900',
-  'comparisons': 'from-purple-50 to-violet-100 dark:from-purple-950 dark:to-violet-900',
-  'local-ai': 'from-cyan-50 to-sky-100 dark:from-cyan-950 dark:to-sky-900',
-  'automation': 'from-rose-50 to-pink-100 dark:from-rose-950 dark:to-pink-900',
-  'blogging-with-ai': 'from-fuchsia-50 to-purple-100 dark:from-fuchsia-950 dark:to-purple-900',
-  'open-source': 'from-lime-50 to-green-100 dark:from-lime-950 dark:to-green-900',
+  'ai-tools': 'from-blue-500/20 to-indigo-500/20 dark:from-blue-500/10 dark:to-indigo-500/10',
+  'tutorials': 'from-emerald-500/20 to-teal-500/20 dark:from-emerald-500/10 dark:to-teal-500/10',
+  'beginner-guides': 'from-amber-500/20 to-orange-500/20 dark:from-amber-500/10 dark:to-orange-500/10',
+  'comparisons': 'from-purple-500/20 to-violet-500/20 dark:from-purple-500/10 dark:to-violet-500/10',
+  'local-ai': 'from-cyan-500/20 to-sky-500/20 dark:from-cyan-500/10 dark:to-sky-500/10',
+  'automation': 'from-rose-500/20 to-pink-500/20 dark:from-rose-500/10 dark:to-pink-500/10',
+  'blogging-with-ai': 'from-fuchsia-500/20 to-purple-500/20 dark:from-fuchsia-500/10 dark:to-purple-500/10',
+  'open-source': 'from-lime-500/20 to-green-500/20 dark:from-lime-500/10 dark:to-green-500/10',
 };
 
 const categoryIcons: Record<string, React.ReactNode> = {
-  'ai-tools': <Wrench className="h-8 w-8" />,
-  'tutorials': <BookOpen className="h-8 w-8" />,
-  'beginner-guides': <GraduationCap className="h-8 w-8" />,
-  'comparisons': <GitCompare className="h-8 w-8" />,
-  'local-ai': <Cpu className="h-8 w-8" />,
-  'automation': <Zap className="h-8 w-8" />,
-  'blogging-with-ai': <PenTool className="h-8 w-8" />,
-  'open-source': <Code className="h-8 w-8" />,
+  'ai-tools': <Wrench className="h-7 w-7" />,
+  'tutorials': <BookOpen className="h-7 w-7" />,
+  'beginner-guides': <GraduationCap className="h-7 w-7" />,
+  'comparisons': <GitCompare className="h-7 w-7" />,
+  'local-ai': <Cpu className="h-7 w-7" />,
+  'automation': <Zap className="h-7 w-7" />,
+  'blogging-with-ai': <PenTool className="h-7 w-7" />,
+  'open-source': <Code className="h-7 w-7" />,
 };
+
 import { Badge } from '@/components/ui/badge';
 import { formatDate } from '@/lib/utils';
-import { blogPosts } from '@/data';
+import { blogPosts, categories } from '@/data';
 import type { BlogPost } from '@/types';
 
 const fadeInUp = {
@@ -42,43 +43,49 @@ function PostCard({ post, featured = false }: { post: BlogPost; featured?: boole
     <motion.article variants={fadeInUp}>
       <Link
         href={`/blog/${post.slug}`}
-        className="group block rounded-2xl border border-neutral-100 bg-white overflow-hidden transition-all duration-300 hover:border-neutral-200 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700"
+        className="group glass-card hover-glow block rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg dark:hover:shadow-indigo-500/5 hover:scale-[1.01]"
       >
         {/* Thumbnail */}
         <div className={`relative overflow-hidden ${featured ? 'h-56' : 'h-44'}`}>
           {post.image ? (
-            <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+            <img
+              src={post.image}
+              alt={post.title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
           ) : (
             <div className={`w-full h-full bg-gradient-to-br ${categoryGradients[post.category] || 'from-neutral-100 to-neutral-50 dark:from-neutral-800 dark:to-neutral-900'}`}>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-neutral-400/40 dark:text-neutral-500/40">
-                  {categoryIcons[post.category] || <BookOpen className="h-8 w-8" />}
+                  {categoryIcons[post.category] || <BookOpen className="h-7 w-7" />}
                 </div>
               </div>
             </div>
           )}
           {post.trending && (
             <div className="absolute top-4 left-4">
-              <Badge className="bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800">
+              <Badge className="glass bg-amber-50/90 text-amber-700 border-amber-200/50 dark:bg-amber-950/80 dark:text-amber-300 dark:border-amber-800/50">
                 <TrendingUp className="mr-1 h-3 w-3" />
                 Trending
               </Badge>
             </div>
           )}
+          {/* Subtle overlay on hover */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
 
-        <div className="p-6">
+        <div className="p-5 sm:p-6">
           <div className="flex items-center gap-3">
-            <Badge variant="neutral" className="bg-neutral-100 text-neutral-600 border-0 dark:bg-neutral-800 dark:text-neutral-400">
-              {post.category.replace('-', ' ')}
-            </Badge>
+            <span className="inline-flex items-center rounded-lg bg-neutral-100 px-2.5 py-1 text-xs font-medium capitalize text-neutral-600 dark:bg-white/5 dark:text-neutral-400">
+              {post.category.replace(/-/g, ' ')}
+            </span>
             <span className="flex items-center gap-1 text-xs text-neutral-400 dark:text-neutral-500">
               <Clock className="h-3 w-3" />
               {post.readTime}
             </span>
           </div>
 
-          <h3 className={`mt-3 font-semibold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 ${featured ? 'text-xl' : 'text-lg'}`}>
+          <h3 className={`mt-3 font-semibold text-neutral-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200 ${featured ? 'text-xl' : 'text-lg'}`}>
             {post.title}
           </h3>
 
@@ -101,7 +108,7 @@ export function FeaturedPostsSection() {
   const featured = blogPosts.filter((p) => p.featured).slice(0, 3);
 
   return (
-    <section className="bg-neutral-50 py-20 dark:bg-neutral-900/50">
+    <section className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4"
@@ -140,7 +147,10 @@ export function RecentPostsSection() {
     .slice(0, 6);
 
   return (
-    <section className="bg-white py-20 dark:bg-neutral-950">
+    <section className="relative py-24 sm:py-32">
+      {/* Subtle section divider glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4"

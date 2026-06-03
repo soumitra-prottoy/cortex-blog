@@ -15,12 +15,12 @@ const fadeInUp = {
 
 export default function RoadmapsSection() {
   return (
-    <section className="bg-neutral-50 py-20 dark:bg-neutral-900/50">
+    <section className="relative py-24 sm:py-32">
+      {/* Section divider */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="text-center"
-          {...fadeInUp}
-        >
+        <motion.div className="text-center" {...fadeInUp}>
           <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">
             Beginner Roadmaps
           </h2>
