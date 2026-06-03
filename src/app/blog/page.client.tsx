@@ -73,7 +73,7 @@ function PostCard({ post }: { post: BlogPost }) {
           </span>
         </div>
 
-        <h3 className="mt-2 text-lg font-semibold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+        <h3 className="mt-2 text-lg font-semibold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-white transition-colors duration-200">
           {post.title}
         </h3>
 

@@ -35,7 +35,7 @@ export default function RoadmapCard({ roadmap }: { roadmap: Roadmap }) {
         </Badge>
       </div>
 
-      <h3 className="mt-5 text-lg font-semibold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+      <h3 className="mt-5 text-lg font-semibold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-white transition-colors duration-200">
         {roadmap.title}
       </h3>
 

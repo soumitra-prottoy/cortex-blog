@@ -28,7 +28,7 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
               {post.category.replace(/-/g, ' ')}
             </Badge>
 
-            <h3 className="mt-3 font-semibold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+            <h3 className="mt-3 font-semibold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-white transition-colors duration-200">
               {post.title}
             </h3>
 

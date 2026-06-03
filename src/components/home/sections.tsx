@@ -85,7 +85,7 @@ function PostCard({ post, featured = false }: { post: BlogPost; featured?: boole
             </span>
           </div>
 
-          <h3 className={`mt-3 font-semibold text-neutral-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200 ${featured ? 'text-xl' : 'text-lg'}`}>
+          <h3 className={`mt-3 font-semibold text-neutral-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-white transition-colors duration-200 ${featured ? 'text-xl' : 'text-lg'}`}>
             {post.title}
           </h3>
 

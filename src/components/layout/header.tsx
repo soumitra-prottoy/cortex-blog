@@ -14,14 +14,7 @@ const navLinks = [
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [dark, setDark] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const toggleDark = () => {
     setDark(!dark);
@@ -30,11 +23,7 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        scrolled
-          ? 'glass-strong border-b border-neutral-200/50 dark:border-white/5 shadow-sm shadow-black/5 dark:shadow-black/20'
-          : 'border-b border-transparent'
-      }`}
+      className={`static top-0 z-50 w-full transition-all duration-300 border-b border-neutral-200/50 dark:border-white/5`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2.5 group">
