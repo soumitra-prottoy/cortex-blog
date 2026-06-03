@@ -1,13 +1,13 @@
 /**
  * Cortex Weekly Blog Generator
  * 
- * This script generates 4 blog posts per week and pushes them to GitHub.
- * Designed to run on Render.com free cron service (or any cron platform).
+ * Generates 4 blog posts per week with REAL researched content using AI.
+ * Runs via GitHub Actions on a schedule — works even when your Mac is off.
  * 
  * Environment variables needed:
  *   GITHUB_TOKEN - GitHub personal access token with repo access
  *   GITHUB_REPO - owner/repo format (e.g., soumitra-prottoy/cortex-blog)
- *   OPENAI_API_KEY - (optional) for AI-generated content
+ *   OPENROUTER_API_KEY - OpenRouter API key for AI content generation
  */
 
 const { execSync } = require('child_process');
@@ -17,6 +17,7 @@ const https = require('https');
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO = process.env.GITHUB_REPO || 'soumitra-prottoy/cortex-blog';
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 const WORK_DIR = '/tmp/cortex-blog';
 
 const topics = [
@@ -44,68 +45,29 @@ const topics = [
   { category: 'tutorials', title: 'How to Use AI to Learn Programming Faster', description: 'Practical strategies for using AI coding assistants to accelerate your programming education.', tags: ['programming', 'learning', 'ai'] },
   { category: 'beginner-guides', title: 'AI Glossary: Every Term You Need to Know', description: 'A comprehensive but simple guide to every AI term — from AGI to zero-shot learning.', tags: ['glossary', 'beginners', 'reference'] },
   { category: 'automation', title: 'How to Build a Personal AI Assistant', description: 'Create your own AI assistant that manages your calendar, emails, and tasks — all with free tools.', tags: ['personal-assistant', 'automation', 'tutorial'] },
+  { category: 'ai-tools', title: 'Best AI Tools for Cybersecurity in 2025', description: 'AI-powered security tools that help detect threats, automate responses, and protect your data.', tags: ['cybersecurity', 'ai-tools', 'security'] },
+  { category: 'tutorials', title: 'How to Create AI-Generated Art for Your Brand', description: 'A complete workflow for creating consistent, on-brand visual content using AI image generators.', tags: ['art', 'branding', 'image-generation'] },
+  { category: 'comparisons', title: 'Notion AI vs Obsidian AI vs Logseq: Which Note-Taking App Wins?', description: 'We compare the AI features of the most popular note-taking apps to find the best one for thinkers.', tags: ['note-taking', 'comparison', 'productivity'] },
+  { category: 'local-ai', title: 'How to Run AI on Raspberry Pi and Edge Devices', description: 'Yes, you can run real AI on a $75 computer. Here is how to set it up.', tags: ['raspberry-pi', 'edge-ai', 'local-ai'] },
+  { category: 'beginner-guides', title: 'AI for Job Seekers: How to Use AI to Land Your Dream Job', description: 'From resume optimization to interview prep — how AI can give you an edge in your job search.', tags: ['jobs', 'career', 'ai'] },
+  { category: 'automation', title: 'How to Automate Data Entry with AI', description: 'Stop manually copying data between spreadsheets. Here is how to set up AI-powered data pipelines.', tags: ['data-entry', 'automation', 'spreadsheets'] },
+  { category: 'ai-tools', title: 'Best AI Voice Generators and Cloning Tools in 2025', description: 'ElevenLabs, PlayHT, and more — which AI voice tool sounds most natural and offers the best value?', tags: ['voice', 'audio', 'ai-tools'] },
+  { category: 'tutorials', title: 'How to Build a RAG System for Your Own Documents', description: 'Create an AI that can answer questions about your own files using Retrieval-Augmented Generation.', tags: ['rag', 'tutorial', 'llm'] },
+  { category: 'open-source', title: 'The Best Open Source Alternatives to ChatGPT', description: 'You do not need OpenAI to have a great AI chat. Here are the best open-source chatbots you can self-host.', tags: ['open-source', 'chatgpt', 'self-hosted'] },
+  { category: 'comparisons', title: 'Cursor vs GitHub Copilot vs Codeium: Best AI Code Editor in 2025', description: 'We tested the top AI coding tools on real projects. Here is which one actually helps you code faster.', tags: ['coding', 'comparison', 'ai-tools'] },
+  { category: 'beginner-guides', title: 'How to Start a Career in AI Without a CS Degree', description: 'You do not need a computer science degree to work in AI. Here is your roadmap from zero to hired.', tags: ['career', 'ai', 'beginners'] },
+  { category: 'ai-tools', title: 'Best AI Tools for Video Editing in 2025', description: 'From auto-captioning to AI-powered cuts — the tools that are changing video production forever.', tags: ['video', 'editing', 'ai-tools'] },
+  { category: 'tutorials', title: 'How to Use AI for Market Research', description: 'Leverage AI tools to analyze competitors, find trends, and make data-driven business decisions.', tags: ['market-research', 'business', 'ai'] },
+  { category: 'automation', title: 'How to Build an AI-Powered Newsletter', description: 'Automate content curation, writing, and sending of a weekly newsletter using AI tools.', tags: ['newsletter', 'automation', 'content'] },
+  { category: 'local-ai', title: 'Best Quantized Models: Run 70B Parameter AI on a Laptop', description: 'GGUF, GPTQ, and AWQ quantization explained — and which models give the best quality at the smallest size.', tags: ['quantization', 'local-ai', 'gguf'] },
 ];
 
 function slugify(text) {
   return text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
-function generateContent(title, category, tags) {
-  return `${title}
-
-This is an auto-generated weekly post for Cortex.
-
-Category: ${category}
-Tags: ${tags.join(', ')}
-
----
-
-## Introduction
-
-The AI landscape is evolving faster than ever. In this week's post, we explore ${title.toLowerCase()} and what it means for you.
-
-## Key Points
-
-- AI tools are becoming more accessible every week
-- You don't need technical skills to benefit from AI
-- The best approach is to start small and build up
-
-## Getting Started
-
-The easiest way to get started is to pick one tool and use it daily for a week. You'll be surprised how quickly it becomes part of your workflow.
-
-## Conclusion
-
-AI is here to stay. The question isn't whether to use it, but how to use it effectively.
-
----
-
-*This post was auto-generated by Cortex Weekly Bot. For more articles, visit [Cortex](https://cortex-blog-sigma.vercel.app).*
-`;
-}
-
-function generateThumbnailSVG(slug, title, categoryIndex) {
-  const colors = [
-    ['#3B82F6', '#8B5CF6'], ['#8B5CF6', '#EC4899'], ['#10B981', '#06B6D4'],
-    ['#F59E0B', '#EF4444'], ['#6366F1', '#8B5CF6'], ['#14B8A6', '#3B82F6'],
-    ['#F97316', '#F59E0B'], ['#0EA5E9', '#6366F1'], ['#EC4899', '#F43F5E'],
-    ['#84CC16', '#22C55E'], ['#3B82F6', '#6366F1'], ['#8B5CF6', '#A855F7'],
-  ];
-  const [c1, c2] = colors[categoryIndex % colors.length];
-  
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <defs>
-    <linearGradient id="bg_${slug}" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:${c1}"/>
-      <stop offset="100%" style="stop-color:${c2}"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#bg_${slug})"/>
-  <circle cx="100" cy="100" r="200" fill="white" opacity="0.05"/>
-  <circle cx="1100" cy="500" r="250" fill="white" opacity="0.05"/>
-  <text x="600" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" font-weight="700" fill="white">${title.substring(0, 35)}${title.length > 35 ? '...' : ''}</text>
-  <text x="600" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="white" opacity="0.8">Cortex — Start Smarter with AI</text>
-</svg>`;
+function escapeTS(str) {
+  return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n').replace(/\r/g, '');
 }
 
 async function httpsRequest(url, options, data) {
@@ -121,18 +83,89 @@ async function httpsRequest(url, options, data) {
   });
 }
 
-async function githubAPI(method, path, data) {
-  const body = JSON.stringify(data);
-  const res = await httpsRequest(`https://api.github.com${path}`, {
-    method,
-    headers: {
-      'Authorization': `token ${GITHUB_TOKEN}`,
-      'Content-Type': 'application/json',
-      'User-Agent': 'Cortex-Bot',
-      'Content-Length': Buffer.byteLength(body),
-    },
-  }, body);
-  return JSON.parse(res.body);
+async function generateRealContent(title, category, tags) {
+  if (!OPENROUTER_API_KEY) {
+    console.log('No OPENROUTER_API_KEY — using template content');
+    return generateTemplateContent(title, category, tags);
+  }
+
+  const prompt = `You are writing a blog post for Cortex (cortex-blog-sigma.vercel.app), an AI knowledge blog for beginners.
+
+Write a comprehensive, well-researched blog post titled: "${title}"
+
+Category: ${category}
+Tags: ${tags.join(', ')}
+
+Rules:
+- Write in a clear, engaging style for beginners
+- Include REAL tool names, REAL pricing (check current prices), REAL URLs
+- Use **bold** for section headers (NOT ## headings)
+- Use bullet points where appropriate
+- Include specific, actionable advice — no fluff or vague statements
+- Include actual numbers, statistics, and comparisons where relevant
+- Write 1500-2500 words
+- End with a clear conclusion and next steps
+- Do NOT include a title heading (the title is added separately)
+- Start directly with the introduction paragraph
+
+Write the post now:`;
+
+  try {
+    const body = JSON.stringify({
+      model: 'google/gemini-2.0-flash-exp-free',
+      messages: [{ role: 'user', content: prompt }],
+      max_tokens: 4000,
+      temperature: 0.7,
+    });
+
+    const res = await httpsRequest('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(body),
+      },
+    }, body);
+
+    const data = JSON.parse(res.body);
+    
+    if (data.choices && data.choices[0] && data.choices[0].message) {
+      return data.choices[0].message.content;
+    }
+    
+    if (data.error) {
+      console.error('OpenRouter error:', JSON.stringify(data.error));
+    }
+    
+    console.log('Falling back to template content');
+    return generateTemplateContent(title, category, tags);
+  } catch (err) {
+    console.error('Content generation error:', err.message);
+    return generateTemplateContent(title, category, tags);
+  }
+}
+
+function generateTemplateContent(title) {
+  return `${title}
+
+The AI landscape in 2025 offers more powerful and accessible tools than ever before. Whether you are just getting started or looking to optimize your workflow, understanding the right tools and approaches can save you countless hours.
+
+**Why This Matters**
+
+Artificial intelligence is no longer a luxury reserved for tech companies. Free and affordable tools now give everyone access to capabilities that were unimaginable just a few years ago. The key is knowing which tools to use and how to use them effectively.
+
+**Getting Started**
+
+The best way to learn is by doing. Pick one tool that addresses your most pressing need, use it daily for a week, and gradually expand your toolkit as you become more comfortable.
+
+**Key Takeaways**
+
+- Start with free tools before investing in paid options
+- Focus on one tool at a time to avoid overwhelm
+- Practice regularly to build proficiency
+- Join communities to learn from others
+
+The future of work involves AI collaboration. Start building these skills today to stay ahead of the curve.`;
 }
 
 async function run() {
@@ -150,9 +183,6 @@ async function run() {
   execSync(`git clone https://${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git ${WORK_DIR}`, { stdio: 'pipe' });
   
   const dataDir = path.join(WORK_DIR, 'src', 'data');
-  const thumbDir = path.join(WORK_DIR, 'public', 'thumbnails');
-  
-  // Read existing data
   const dataFile = path.join(dataDir, 'index.ts');
   let dataContent = fs.readFileSync(dataFile, 'utf-8');
   
@@ -177,6 +207,9 @@ async function run() {
     date.setDate(date.getDate() + i);
     const dateStr = date.toISOString().split('T')[0];
     
+    console.log(`Generating content for: ${topic.title}...`);
+    const content = await generateRealContent(topic.title, topic.category, topic.tags);
+    
     posts.push({
       slug,
       title: topic.title,
@@ -188,14 +221,10 @@ async function run() {
       readTime: '8 min read',
       featured: i === 0,
       trending: i < 2,
-      content: generateContent(topic.title, topic.category, topic.tags),
+      content,
     });
     
-    // Generate thumbnail
-    const svg = generateThumbnailSVG(slug, topic.title, topicIndex);
-    fs.writeFileSync(path.join(thumbDir, `${slug}.svg`), svg);
-    
-    console.log(`Generated: ${slug}`);
+    console.log(`  Content generated (${content.length} chars)`);
   }
   
   if (posts.length === 0) {
@@ -203,12 +232,15 @@ async function run() {
     return;
   }
   
-  // Insert posts into data file
-  const postEntries = posts.map(p => `  {
+  // Build post entries for index.ts — content stored as escaped string
+  const postEntries = posts.map(p => {
+    const escTitle = p.title.replace(/'/g, "\\'");
+    const escDesc = p.description.replace(/'/g, "\\'");
+    const escContent = escapeTS(p.content);
+    return `  {
     slug: '${p.slug}',
-    image: '/thumbnails/${p.slug}.svg',
-    title: '${p.title.replace(/'/g, "\\'")}',
-    description: '${p.description.replace(/'/g, "\\'")}',
+    title: '${escTitle}',
+    description: '${escDesc}',
     category: '${p.category}',
     tags: [${p.tags.map(t => `'${t}'`).join(', ')}],
     author: '${p.author}',
@@ -216,8 +248,9 @@ async function run() {
     readTime: '${p.readTime}',
     featured: ${p.featured},
     trending: ${p.trending},
-    content: \`${p.content.replace(/`/g, '\\`')}\`
-  }`).join(',\n');
+    content: \`${escContent}\`
+  }`;
+  });
   
   // Insert after "export const blogPosts: BlogPost[] = ["
   const insertMarker = 'export const blogPosts: BlogPost[] = [\n';
@@ -228,7 +261,7 @@ async function run() {
   }
   
   const insertPos = idx + insertMarker.length;
-  dataContent = dataContent.slice(0, insertPos) + postEntries + ',\n' + dataContent.slice(insertPos);
+  dataContent = dataContent.slice(0, insertPos) + postEntries.join(',\n') + ',\n' + dataContent.slice(insertPos);
   
   fs.writeFileSync(dataFile, dataContent);
   
@@ -238,8 +271,10 @@ async function run() {
   execSync(`cd ${WORK_DIR} && git add -A && git commit -m "Weekly blog posts: ${posts.map(p => p.slug).join(', ')}"`);
   execSync(`cd ${WORK_DIR} && git push origin main`);
   
-  console.log(`Successfully pushed ${posts.length} new posts!`);
+  console.log(`\nSuccessfully pushed ${posts.length} new posts!`);
   console.log('Vercel will auto-deploy in ~2 minutes.');
+  console.log('\nPosts:');
+  posts.forEach(p => console.log(`  - ${p.title} (${p.slug})`));
 }
 
 run().catch(err => {
