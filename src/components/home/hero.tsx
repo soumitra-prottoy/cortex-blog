@@ -75,8 +75,8 @@ export function HeroSection() {
         >
           {/* Badge */}
           <motion.div variants={fadeInUp} className="mb-8">
-            <span className="glass-card inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-neutral-700 dark:text-neutral-300">
-              <Sparkles className="h-4 w-4 text-indigo-500 dark:text-indigo-400" />
+            <span className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold bg-white/80 text-neutral-800 border border-neutral-200 shadow-sm dark:bg-white/10 dark:text-white dark:border-white/20 backdrop-blur-sm">
+              <Sparkles className="h-4 w-4 text-indigo-500" />
               <span>Your neural network for AI knowledge</span>
             </span>
           </motion.div>
@@ -115,14 +115,14 @@ export function HeroSection() {
             </Link>
             <Link
               href="/roadmaps"
-              className="glass-card inline-flex h-14 items-center justify-center rounded-2xl px-8 text-sm font-semibold text-neutral-700 transition-all duration-300 hover:scale-[1.02] dark:text-neutral-200"
+              className="inline-flex h-14 items-center justify-center rounded-2xl px-8 text-sm font-semibold border border-neutral-300 text-neutral-700 transition-all duration-300 hover:scale-[1.02] hover:border-neutral-400 dark:border-neutral-600 dark:text-neutral-200 dark:hover:border-neutral-400 bg-white/50 dark:bg-white/5 backdrop-blur-sm"
             >
               Explore Roadmaps
             </Link>
           </motion.div>
         </motion.div>
 
-        {/* Stats — glassmorphism cards */}
+        {/* Stats */}
         <motion.div
           className="mx-auto mt-20 grid max-w-2xl grid-cols-3 gap-4 sm:gap-6"
           initial={{ opacity: 0, y: 30 }}
@@ -136,7 +136,7 @@ export function HeroSection() {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="glass-card rounded-2xl px-4 py-6 sm:px-6"
+              className="rounded-2xl px-4 py-6 sm:px-6 bg-white border border-neutral-200 shadow-sm dark:bg-neutral-900 dark:border-neutral-700"
             >
               <div className="text-2xl font-bold text-neutral-900 sm:text-3xl dark:text-white">
                 {stat.value}

@@ -38,15 +38,15 @@ const fadeInUp = {
   transition: { duration: 0.5 },
 };
 
-function PostCard({ post, featured = false }: { post: BlogPost; featured?: boolean }) {
+function PostCard({ post }: { post: BlogPost }) {
   return (
     <motion.article variants={fadeInUp}>
       <Link
         href={`/blog/${post.slug}`}
-        className="group glass-card hover-glow block rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg dark:hover:shadow-indigo-500/5 hover:scale-[1.01]"
+        className="group block rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg border border-neutral-100 bg-white hover:border-neutral-200 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700"
       >
         {/* Thumbnail */}
-        <div className={`relative overflow-hidden ${featured ? 'h-56' : 'h-44'}`}>
+        <div className="relative overflow-hidden h-48">
           {post.image ? (
             <img
               src={post.image}
@@ -85,7 +85,7 @@ function PostCard({ post, featured = false }: { post: BlogPost; featured?: boole
             </span>
           </div>
 
-          <h3 className={`mt-3 font-semibold text-neutral-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-white transition-colors duration-200 ${featured ? 'text-xl' : 'text-lg'}`}>
+          <h3 className="mt-3 text-lg font-semibold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-white transition-colors duration-200">
             {post.title}
           </h3>
 
@@ -132,8 +132,8 @@ export function FeaturedPostsSection() {
         </motion.div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featured.map((post, i) => (
-            <PostCard key={post.slug} post={post} featured={i === 0} />
+          {featured.map((post) => (
+            <PostCard key={post.slug} post={post} />
           ))}
         </div>
       </div>
