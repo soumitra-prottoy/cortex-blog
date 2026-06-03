@@ -12,6 +12,10 @@ interface Node {
   pulsePhase: number;
   pulseSpeed: number;
   hue: number;
+  // Each node has its own orbit parameters for organic movement
+  orbitRadius: number;
+  orbitSpeed: number;
+  orbitPhase: number;
 }
 
 interface Particle {
@@ -29,7 +33,6 @@ export default function NeuralBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animRef = useRef<number>(0);
   const mouseRef = useRef({ x: -9999, y: -9999, active: false });
-  const nodesRef = useRef<Node[]>([]);
 
   const initCanvas = useCallback(() => {
     const canvas = canvasRef.current;
@@ -50,47 +53,53 @@ export default function NeuralBackground() {
 
     const isDark = document.documentElement.classList.contains('dark');
 
-    // Create neural nodes — MORE of them
-    const nodeCount = Math.max(60, Math.floor((w * h) / 18000));
+    // Create nodes with individual orbit behaviors
+    const nodeCount = Math.max(50, Math.floor((w * h) / 22000));
     const nodes: Node[] = [];
 
     for (let i = 0; i < nodeCount; i++) {
-      const baseRadius = 2 + Math.random() * 2.5;
+      const baseRadius = 1.5 + Math.random() * 2;
+      // Each node orbits around its own center point spread across the canvas
+      const orbitCX = Math.random() * w;
+      const orbitCY = Math.random() * h;
+
       nodes.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
+        x: orbitCX + (Math.random() - 0.5) * 100,
+        y: orbitCY + (Math.random() - 0.5) * 100,
+        vx: 0,
+        vy: 0,
         radius: baseRadius,
         baseRadius,
         pulsePhase: Math.random() * Math.PI * 2,
-        pulseSpeed: 0.008 + Math.random() * 0.02,
-        hue: 240 + Math.random() * 60, // blue to purple range
+        pulseSpeed: 0.01 + Math.random() * 0.025,
+        hue: 220 + Math.random() * 80, // blue → purple → pink
+        orbitRadius: 30 + Math.random() * 80,
+        orbitSpeed: 0.002 + Math.random() * 0.006,
+        orbitPhase: Math.random() * Math.PI * 2,
       });
     }
-    nodesRef.current = nodes;
 
-    // Floating particles
+    // Particles — more of them, more visible
     const particles: Particle[] = [];
-    const maxParticles = Math.floor(nodeCount * 1.2);
+    const maxParticles = 40;
 
     function spawnParticle() {
       if (particles.length >= maxParticles) return;
       const angle = Math.random() * Math.PI * 2;
-      const speed = 0.03 + Math.random() * 0.08;
+      const speed = 0.05 + Math.random() * 0.15;
       particles.push({
         x: Math.random() * w,
         y: Math.random() * h,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         life: 0,
-        maxLife: 600 + Math.random() * 1000,
+        maxLife: 400 + Math.random() * 800,
         size: 0.8 + Math.random() * 2,
         hue: 220 + Math.random() * 80,
       });
     }
 
-    const connectionDist = Math.min(w, h) * 0.2;
+    const connectionDist = Math.min(w, h) * 0.18;
     let time = 0;
 
     function draw() {
@@ -100,39 +109,39 @@ export default function NeuralBackground() {
 
       ctx.clearRect(0, 0, w, h);
 
-      // Background glow orbs — slowly drifting
+      // Background glow orbs — slow, subtle drift
+      // In light mode: very dim, only visible as soft color hints
+      // In dark mode: more visible purple/blue glows
+      const orbAlpha = dark ? 1 : 0.3;
       const drawOrb = (ox: number, oy: number, r: number, hue: number, alpha: number) => {
-        const driftX = Math.sin(time * 0.003 + ox * 0.001) * 30;
-        const driftY = Math.cos(time * 0.004 + oy * 0.001) * 20;
-        const flicker = Math.sin(time * 0.01 + ox * 0.01) * 0.15;
+        const driftX = Math.sin(time * 0.002 + ox * 0.0005) * 40;
+        const driftY = Math.cos(time * 0.003 + oy * 0.0005) * 30;
         const gradient = ctx!.createRadialGradient(
           ox + driftX, oy + driftY, 0,
           ox + driftX, oy + driftY, r
         );
-        gradient.addColorStop(0, `hsla(${hue}, 70%, 60%, ${(alpha + flicker) * (dark ? 1 : 0.5)})`);
-        gradient.addColorStop(0.5, `hsla(${hue}, 60%, 50%, ${(alpha + flicker) * 0.4 * (dark ? 1 : 0.4)})`);
+        gradient.addColorStop(0, `hsla(${hue}, 70%, 60%, ${alpha * orbAlpha})`);
+        gradient.addColorStop(0.5, `hsla(${hue}, 60%, 50%, ${alpha * 0.3 * orbAlpha})`);
         gradient.addColorStop(1, `hsla(${hue}, 50%, 40%, 0)`);
         ctx!.fillStyle = gradient;
         ctx!.fillRect(ox + driftX - r, oy + driftY - r, r * 2, r * 2);
       };
 
-      drawOrb(w * 0.15, h * 0.25, w * 0.55, 260, dark ? 0.15 : 0.06);
-      drawOrb(w * 0.85, h * 0.65, w * 0.5, 220, dark ? 0.12 : 0.05);
-      drawOrb(w * 0.5, h * 0.85, w * 0.4, 280, dark ? 0.1 : 0.04);
-      drawOrb(w * 0.6, h * 0.15, w * 0.35, 240, dark ? 0.08 : 0.03);
+      drawOrb(w * 0.2, h * 0.3, w * 0.5, 250, dark ? 0.18 : 0.06);
+      drawOrb(w * 0.8, h * 0.6, w * 0.45, 220, dark ? 0.14 : 0.05);
+      drawOrb(w * 0.5, h * 0.8, w * 0.35, 280, dark ? 0.1 : 0.03);
 
-      // Mouse-reactive spotlight — soft glow follows cursor
+      // Mouse-reactive subtle glow
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
       const mouseActive = mouseRef.current.active;
 
-      if (mouseActive && mx > 0 && my > 0) {
-        const spotR = Math.min(w, h) * 0.4;
-        const spotAlpha = dark ? 0.1 : 0.05;
+      if (mouseActive) {
+        const spotR = Math.min(w, h) * 0.35;
         const spot = ctx.createRadialGradient(mx, my, 0, mx, my, spotR);
-        spot.addColorStop(0, `hsla(250, 80%, 70%, ${spotAlpha})`);
-        spot.addColorStop(0.4, `hsla(240, 70%, 60%, ${spotAlpha * 0.5})`);
-        spot.addColorStop(1, `hsla(230, 60%, 50%, 0)`);
+        spot.addColorStop(0, `hsla(250, 70%, 65%, ${dark ? 0.06 : 0.03})`);
+        spot.addColorStop(0.5, `hsla(240, 60%, 55%, ${dark ? 0.03 : 0.015})`);
+        spot.addColorStop(1, `hsla(230, 50%, 50%, 0)`);
         ctx.fillStyle = spot;
         ctx.fillRect(mx - spotR, my - spotR, spotR * 2, spotR * 2);
       }
@@ -147,31 +156,30 @@ export default function NeuralBackground() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < connectionDist) {
-            const alpha = (1 - dist / connectionDist);
-            const wave = Math.sin(time * 0.012 + dist * 0.004) * 0.5 + 0.5;
-            const lineAlpha = alpha * (dark ? 0.25 : 0.14) * (wave * 0.4 + 0.6);
+            const alpha = 1 - dist / connectionDist;
+            const wave = Math.sin(time * 0.008 + dist * 0.003) * 0.5 + 0.5;
+            const lineAlpha = alpha * (dark ? 0.2 : 0.1) * (wave * 0.3 + 0.7);
 
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
 
-            // Curved connections
-            const midX = (a.x + b.x) / 2 + Math.sin(time * 0.006 + i * 0.5) * 12;
-            const midY = (a.y + b.y) / 2 + Math.cos(time * 0.006 + j * 0.5) * 12;
+            const midX = (a.x + b.x) / 2 + Math.sin(time * 0.005 + i) * 6;
+            const midY = (a.y + b.y) / 2 + Math.cos(time * 0.005 + j) * 6;
             ctx.quadraticCurveTo(midX, midY, b.x, b.y);
 
             const avgHue = (a.hue + b.hue) / 2;
-            ctx.strokeStyle = `hsla(${avgHue}, 60%, ${dark ? 70 : 55}%, ${lineAlpha})`;
-            ctx.lineWidth = dark ? 0.7 : 0.5;
+            ctx.strokeStyle = `hsla(${avgHue}, 55%, ${dark ? 65 : 50}%, ${lineAlpha})`;
+            ctx.lineWidth = dark ? 0.6 : 0.4;
             ctx.stroke();
 
-            // Traveling pulse along connection
-            if (wave > 0.88) {
-              const t = (wave - 0.88) / 0.12;
+            // Traveling pulse
+            if (wave > 0.9) {
+              const t = (wave - 0.9) / 0.1;
               const px = a.x + (b.x - a.x) * t;
               const py = a.y + (b.y - a.y) * t;
               ctx.beginPath();
-              ctx.arc(px, py, 1.5, 0, Math.PI * 2);
-              ctx.fillStyle = `hsla(${avgHue}, 70%, ${dark ? 80 : 65}%, ${alpha * 0.6})`;
+              ctx.arc(px, py, 1.2, 0, Math.PI * 2);
+              ctx.fillStyle = `hsla(${avgHue}, 65%, ${dark ? 75 : 60}%, ${alpha * 0.5})`;
               ctx.fill();
             }
           }
@@ -181,57 +189,54 @@ export default function NeuralBackground() {
       // Update and draw nodes
       for (const node of nodes) {
         node.pulsePhase += node.pulseSpeed;
-        node.radius = node.baseRadius + Math.sin(node.pulsePhase) * 1;
+        node.radius = node.baseRadius + Math.sin(node.pulsePhase) * 0.8;
 
-        // Mouse interaction — gentle repulsion with return force
+        // Each node orbits around a center point that itself drifts slowly
+        const nodeOrbitCX = (w * 0.5) + Math.sin(time * 0.001 + node.orbitPhase) * w * 0.25;
+        const nodeOrbitCY = (h * 0.5) + Math.cos(time * 0.0012 + node.orbitPhase) * h * 0.25;
+
+        // Orbital motion — keeps nodes moving in a flowing pattern
+        node.orbitPhase += node.orbitSpeed;
+        const targetX = nodeOrbitCX + Math.cos(node.orbitPhase) * node.orbitRadius;
+        const targetY = nodeOrbitCY + Math.sin(node.orbitPhase * 0.7 + node.orbitPhase) * node.orbitRadius;
+
+        // Gentle pull toward orbit position
+        node.vx += (targetX - node.x) * 0.003;
+        node.vy += (targetY - node.y) * 0.003;
+
+        // Mouse interaction — gentle nudge (not strong repulsion)
         if (mouseActive) {
           const mdx = node.x - mx;
           const mdy = node.y - my;
           const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
-          if (mDist < 250 && mDist > 0) {
-            const force = (250 - mDist) / 250 * 0.4;
+          if (mDist < 200 && mDist > 0) {
+            // Soft nudge — nodes gently move away but orbit pulls them back
+            const force = (200 - mDist) / 200 * 0.15;
             node.vx += (mdx / mDist) * force;
             node.vy += (mdy / mDist) * force;
           }
         }
 
-        // Return-to-center force (keeps nodes from drifting away)
-        const cx = w / 2;
-        const cy = h / 2;
-        const toCenterX = cx - node.x;
-        const toCenterY = cy - node.y;
-        const centerDist = Math.sqrt(toCenterX * toCenterX + toCenterY * toCenterY);
-        const maxDist = Math.min(w, h) * 0.45;
-        if (centerDist > maxDist) {
-          const pull = (centerDist - maxDist) / maxDist * 0.003;
-          node.vx += (toCenterX / centerDist) * pull;
-          node.vy += (toCenterY / centerDist) * pull;
-        }
-
-        // Gentle random drift
-        node.vx += (Math.random() - 0.5) * 0.01;
-        node.vy += (Math.random() - 0.5) * 0.01;
-
-        // Damping — stronger damping so they settle back
-        node.vx *= 0.985;
-        node.vy *= 0.985;
+        // Strong damping so nodes don't fly away
+        node.vx *= 0.96;
+        node.vy *= 0.96;
 
         node.x += node.vx;
         node.y += node.vy;
 
-        // Soft boundary — push back from edges
-        const margin = 30;
-        if (node.x < margin) node.vx += 0.05;
-        if (node.x > w - margin) node.vx -= 0.05;
-        if (node.y < margin) node.vy += 0.05;
-        if (node.y > h - margin) node.vy -= 0.05;
+        // Very soft edge push
+        const margin = 20;
+        if (node.x < margin) node.vx += 0.08;
+        if (node.x > w - margin) node.vx -= 0.08;
+        if (node.y < margin) node.vy += 0.08;
+        if (node.y > h - margin) node.vy -= 0.08;
 
-        // Draw node glow
-        const glowR = node.radius * (dark ? 10 : 7);
+        // Draw node glow — in light mode, keep it subtle
+        const glowR = node.radius * (dark ? 8 : 5);
         const glow = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, glowR);
-        glow.addColorStop(0, `hsla(${node.hue}, 70%, ${dark ? 75 : 60}%, ${dark ? 0.3 : 0.15})`);
-        glow.addColorStop(0.4, `hsla(${node.hue}, 60%, ${dark ? 65 : 50}%, ${dark ? 0.1 : 0.06})`);
-        glow.addColorStop(1, `hsla(${node.hue}, 50%, 50%, 0)`);
+        glow.addColorStop(0, `hsla(${node.hue}, 65%, ${dark ? 70 : 60}%, ${dark ? 0.25 : 0.08})`);
+        glow.addColorStop(0.5, `hsla(${node.hue}, 55%, ${dark ? 60 : 50}%, ${dark ? 0.08 : 0.03})`);
+        glow.addColorStop(1, `hsla(${node.hue}, 45%, 50%, 0)`);
         ctx.fillStyle = glow;
         ctx.beginPath();
         ctx.arc(node.x, node.y, glowR, 0, Math.PI * 2);
@@ -240,13 +245,12 @@ export default function NeuralBackground() {
         // Draw node core
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${node.hue}, 65%, ${dark ? 80 : 55}%, ${dark ? 0.85 : 0.5})`;
+        ctx.fillStyle = `hsla(${node.hue}, 60%, ${dark ? 75 : 50}%, ${dark ? 0.8 : 0.35})`;
         ctx.fill();
       }
 
-      // Spawn particles more frequently
-      if (time % 20 === 0) spawnParticle();
-      if (time % 60 === 0) spawnParticle();
+      // Spawn particles regularly
+      if (time % 15 === 0) spawnParticle();
 
       // Update and draw particles
       for (let i = particles.length - 1; i >= 0; i--) {
@@ -261,21 +265,21 @@ export default function NeuralBackground() {
         }
 
         const lifeRatio = p.life / p.maxLife;
-        const fadeIn = Math.min(lifeRatio * 5, 1);
-        const fadeOut = Math.max(1 - (lifeRatio - 0.7) / 0.3, 0);
-        const alpha = fadeIn * Math.min(1, fadeOut) * (dark ? 0.5 : 0.25);
+        const fadeIn = Math.min(lifeRatio * 4, 1);
+        const fadeOut = Math.max(1 - (lifeRatio - 0.65) / 0.35, 0);
+        const alpha = fadeIn * Math.min(1, fadeOut) * (dark ? 0.45 : 0.18);
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue}, 65%, ${dark ? 75 : 60}%, ${alpha})`;
+        ctx.fillStyle = `hsla(${p.hue}, 60%, ${dark ? 72 : 55}%, ${alpha})`;
         ctx.fill();
       }
 
-      // Subtle vignette
+      // Vignette only in dark mode
       if (dark) {
-        const vigGrad = ctx.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.25, w / 2, h / 2, Math.max(w, h) * 0.7);
+        const vigGrad = ctx.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.3, w / 2, h / 2, Math.max(w, h) * 0.65);
         vigGrad.addColorStop(0, 'rgba(0,0,0,0)');
-        vigGrad.addColorStop(1, 'rgba(0,0,0,0.35)');
+        vigGrad.addColorStop(1, 'rgba(0,0,0,0.3)');
         ctx.fillStyle = vigGrad;
         ctx.fillRect(0, 0, w, h);
       }
@@ -285,7 +289,6 @@ export default function NeuralBackground() {
 
     draw();
 
-    // Mouse tracking — relative to canvas
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       mouseRef.current = {

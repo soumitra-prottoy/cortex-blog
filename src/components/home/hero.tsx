@@ -21,7 +21,7 @@ const stagger = {
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-neutral-50/[0.3] dark:bg-transparent">
       {/* Canvas neural background */}
       <NeuralBackground />
 
