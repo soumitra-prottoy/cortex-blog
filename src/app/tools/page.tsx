@@ -2,12 +2,13 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { Search, ExternalLink, Check, X, Star, Filter } from 'lucide-react';
+import { Search, ExternalLink, Check, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { tools } from '@/data';
 import type { Tool } from '@/types';
+import { toolLogos } from '@/components/ToolLogos';
 
 const toolCategories = [
   { slug: 'all', label: 'All Tools' },
