@@ -37,7 +37,7 @@ export default function NeuralBackground() {
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const w = window.innerWidth;
-    const h = document.documentElement.scrollHeight;
+    const h = window.innerHeight;
 
     canvas.width = w * dpr;
     canvas.height = h * dpr;
@@ -306,7 +306,7 @@ export default function NeuralBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none"
+      className="absolute inset-0 pointer-events-none"
       style={{ zIndex: 0 }}
       aria-hidden="true"
     />
