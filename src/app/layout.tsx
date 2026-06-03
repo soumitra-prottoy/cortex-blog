@@ -10,6 +10,8 @@ const inter = Inter({
   display: 'swap',
 });
 
+import GoogleAnalytics from '@/components/GoogleAnalytics';
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://cortex.vercel.app'),
   title: {
@@ -49,6 +51,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="min-h-screen bg-white font-sans text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100">
+        <GoogleAnalytics />
         <Header />
         <main className="min-h-screen">
           {children}
