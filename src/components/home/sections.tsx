@@ -43,7 +43,7 @@ function PostCard({ post }: { post: BlogPost }) {
     <motion.article variants={fadeInUp}>
       <Link
         href={`/blog/${post.slug}`}
-        className="group block rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg border border-neutral-100 bg-white hover:border-neutral-200 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700"
+        className="group block rounded-2xl overflow-hidden transition-all duration-300 bg-white border border-neutral-200 shadow-sm hover:shadow-xl hover:border-neutral-300 hover:-translate-y-1 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-600 dark:hover:shadow-2xl dark:hover:shadow-black/20"
       >
         {/* Thumbnail */}
         <div className="relative overflow-hidden h-48">

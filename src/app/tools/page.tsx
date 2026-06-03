@@ -41,13 +41,21 @@ function PricingBadge({ pricing }: { pricing: Tool['pricing'] }) {
   );
 }
 
+import { toolLogos } from '@/components/ToolLogos';
+
 function ToolCard({ tool }: { tool: Tool }) {
+  const LogoComponent = toolLogos[tool.slug];
+
   return (
-    <div className="group rounded-2xl border border-neutral-100 bg-white p-6 transition-all duration-300 hover:border-neutral-200 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
+    <div className="group rounded-2xl border border-neutral-200 bg-white p-6 transition-all duration-300 shadow-sm hover:shadow-xl hover:border-neutral-300 hover:-translate-y-1 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-600 dark:hover:shadow-2xl dark:hover:shadow-black/20">
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-100 text-lg font-bold text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400">
-            {tool.name.charAt(0)}
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-50 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 overflow-hidden">
+            {LogoComponent ? (
+              <LogoComponent className="h-7 w-7" />
+            ) : (
+              <span className="text-lg font-bold">{tool.name.charAt(0)}</span>
+            )}
           </div>
           <div>
             <h3 className="font-semibold text-neutral-900 dark:text-white">

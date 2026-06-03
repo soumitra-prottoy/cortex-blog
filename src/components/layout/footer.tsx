@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Brain, Rss, Code2 } from 'lucide-react';
+import { Brain, Rss } from 'lucide-react';
 
 const footerLinks = {
   content: [
@@ -49,10 +49,12 @@ export default function Footer() {
               Your neural network for AI knowledge. Tools, tutorials, and insights to start smarter with AI.
             </p>
             <div className="mt-6 flex items-center gap-3">
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="glass-card flex h-9 w-9 items-center justify-center rounded-lg text-neutral-400 hover:text-neutral-900 transition-all duration-200 dark:hover:text-white" aria-label="Twitter">
-                <Code2 className="h-4 w-4" />
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200 text-neutral-400 hover:text-neutral-900 hover:border-neutral-300 transition-all duration-200 dark:border-neutral-700 dark:hover:text-white dark:hover:border-neutral-500" aria-label="Twitter/X">
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
               </a>
-              <a href="/rss.xml" className="glass-card flex h-9 w-9 items-center justify-center rounded-lg text-neutral-400 hover:text-neutral-900 transition-all duration-200 dark:hover:text-white" aria-label="RSS">
+              <a href="mailto:hello@cortex-blog.com" className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200 text-neutral-400 hover:text-neutral-900 hover:border-neutral-300 transition-all duration-200 dark:border-neutral-700 dark:hover:text-white dark:hover:border-neutral-500" aria-label="Email">
                 <Rss className="h-4 w-4" />
               </a>
             </div>

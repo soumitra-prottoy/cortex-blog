@@ -37,7 +37,7 @@ function PostCard({ post }: { post: BlogPost }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group flex flex-col rounded-2xl border border-neutral-100 bg-white overflow-hidden transition-all duration-300 hover:border-neutral-200 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700"
+      className="group flex flex-col rounded-2xl border border-neutral-200 bg-white overflow-hidden transition-all duration-300 shadow-sm hover:shadow-xl hover:border-neutral-300 hover:-translate-y-1 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-600 dark:hover:shadow-2xl dark:hover:shadow-black/20"
     >
       <div className="relative h-44 overflow-hidden">
           {post.image ? (
