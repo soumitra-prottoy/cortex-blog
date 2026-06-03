@@ -158,7 +158,7 @@ export default function NeuralBackground() {
           if (dist < connectionDist) {
             const alpha = 1 - dist / connectionDist;
             const wave = Math.sin(time * 0.008 + dist * 0.003) * 0.5 + 0.5;
-            const lineAlpha = alpha * (dark ? 0.2 : 0.1) * (wave * 0.3 + 0.7);
+            const lineAlpha = alpha * (dark ? 0.2 : 0.12) * (wave * 0.3 + 0.7);
 
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -231,11 +231,11 @@ export default function NeuralBackground() {
         if (node.y < margin) node.vy += 0.08;
         if (node.y > h - margin) node.vy -= 0.08;
 
-        // Draw node glow — in light mode, keep it subtle
-        const glowR = node.radius * (dark ? 8 : 5);
+        // Draw node glow
+        const glowR = node.radius * (dark ? 8 : 6);
         const glow = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, glowR);
-        glow.addColorStop(0, `hsla(${node.hue}, 65%, ${dark ? 70 : 60}%, ${dark ? 0.25 : 0.08})`);
-        glow.addColorStop(0.5, `hsla(${node.hue}, 55%, ${dark ? 60 : 50}%, ${dark ? 0.08 : 0.03})`);
+        glow.addColorStop(0, `hsla(${node.hue}, 65%, ${dark ? 70 : 55}%, ${dark ? 0.25 : 0.15})`);
+        glow.addColorStop(0.5, `hsla(${node.hue}, 55%, ${dark ? 60 : 45}%, ${dark ? 0.08 : 0.06})`);
         glow.addColorStop(1, `hsla(${node.hue}, 45%, 50%, 0)`);
         ctx.fillStyle = glow;
         ctx.beginPath();
@@ -245,7 +245,7 @@ export default function NeuralBackground() {
         // Draw node core
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${node.hue}, 60%, ${dark ? 75 : 50}%, ${dark ? 0.8 : 0.35})`;
+        ctx.fillStyle = `hsla(${node.hue}, 60%, ${dark ? 75 : 45}%, ${dark ? 0.8 : 0.55})`;
         ctx.fill();
       }
 
@@ -267,7 +267,7 @@ export default function NeuralBackground() {
         const lifeRatio = p.life / p.maxLife;
         const fadeIn = Math.min(lifeRatio * 4, 1);
         const fadeOut = Math.max(1 - (lifeRatio - 0.65) / 0.35, 0);
-        const alpha = fadeIn * Math.min(1, fadeOut) * (dark ? 0.45 : 0.18);
+        const alpha = fadeIn * Math.min(1, fadeOut) * (dark ? 0.45 : 0.25);
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);

@@ -21,12 +21,12 @@ const stagger = {
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-neutral-50/[0.3] dark:bg-transparent">
-      {/* Canvas neural background */}
+    <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
+      {/* Neural canvas background */}
       <NeuralBackground />
 
-      {/* Gradient mesh orbs */}
-      <div className="gradient-mesh">
+      {/* Gradient mesh orbs — only visible in dark mode */}
+      <div className="gradient-mesh hidden dark:block">
         <div
           className="orb animate-glow-breathe"
           style={{
@@ -34,7 +34,7 @@ export function HeroSection() {
             height: '50vw',
             top: '-10%',
             left: '-10%',
-            background: 'radial-gradient(circle, rgba(100,60,220,0.12) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(100,60,220,0.15) 0%, transparent 70%)',
             opacity: 0.6,
             filter: 'blur(80px)',
           }}
@@ -46,7 +46,7 @@ export function HeroSection() {
             height: '40vw',
             bottom: '-5%',
             right: '-8%',
-            background: 'radial-gradient(circle, rgba(60,100,220,0.1) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(60,100,220,0.12) 0%, transparent 70%)',
             opacity: 0.5,
             filter: 'blur(80px)',
             animationDelay: '4s',
@@ -59,12 +59,15 @@ export function HeroSection() {
             height: '30vw',
             top: '40%',
             right: '15%',
-            background: 'radial-gradient(circle, rgba(120,80,200,0.08) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(120,80,200,0.1) 0%, transparent 70%)',
             opacity: 0.4,
             filter: 'blur(60px)',
           }}
         />
       </div>
+
+      {/* Light mode: subtle gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-neutral-100/80 via-white to-white dark:from-transparent dark:via-transparent dark:to-transparent pointer-events-none" />
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
@@ -75,7 +78,7 @@ export function HeroSection() {
         >
           {/* Badge */}
           <motion.div variants={fadeInUp} className="mb-8">
-            <span className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold bg-white/80 text-neutral-800 border border-neutral-200 shadow-sm dark:bg-white/10 dark:text-white dark:border-white/20 backdrop-blur-sm">
+            <span className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold bg-white text-neutral-800 border border-neutral-200 shadow-sm dark:bg-white/10 dark:text-white dark:border-white/20 backdrop-blur-sm">
               <Sparkles className="h-4 w-4 text-indigo-500" />
               <span>Your neural network for AI knowledge</span>
             </span>
@@ -115,7 +118,7 @@ export function HeroSection() {
             </Link>
             <Link
               href="/roadmaps"
-              className="inline-flex h-14 items-center justify-center rounded-2xl px-8 text-sm font-semibold border border-neutral-300 text-neutral-700 transition-all duration-300 hover:scale-[1.02] hover:border-neutral-400 dark:border-neutral-600 dark:text-neutral-200 dark:hover:border-neutral-400 bg-white/50 dark:bg-white/5 backdrop-blur-sm"
+              className="inline-flex h-14 items-center justify-center rounded-2xl px-8 text-sm font-semibold border border-neutral-300 text-neutral-700 transition-all duration-300 hover:scale-[1.02] hover:border-neutral-400 dark:border-neutral-600 dark:text-neutral-200 dark:hover:border-neutral-400 bg-white dark:bg-white/5 backdrop-blur-sm shadow-sm"
             >
               Explore Roadmaps
             </Link>
