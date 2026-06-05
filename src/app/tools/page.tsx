@@ -42,8 +42,6 @@ function PricingBadge({ pricing }: { pricing: Tool['pricing'] }) {
   );
 }
 
-import { toolLogos } from '@/components/ToolLogos';
-
 function ToolCard({ tool }: { tool: Tool }) {
   const LogoComponent = toolLogos[tool.slug];
 
@@ -163,7 +161,7 @@ export default function ToolsPage() {
   }, [activeCategory, activePricing, searchQuery]);
 
   return (
-    <div className="bg-white dark:bg-neutral-950">
+    <div className="flex-1 flex flex-col bg-white dark:bg-neutral-950">
       {/* Header */}
       <section className="border-b border-neutral-100 bg-neutral-50 py-16 dark:border-neutral-800 dark:bg-neutral-900/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -230,7 +228,7 @@ export default function ToolsPage() {
       </section>
 
       {/* Tools Grid */}
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <section className="flex-1 mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <p className="mb-6 text-sm text-neutral-400 dark:text-neutral-500">
           Showing {filteredTools.length} tool{filteredTools.length !== 1 ? 's' : ''}
         </p>

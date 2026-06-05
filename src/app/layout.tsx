@@ -59,9 +59,9 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <GoogleAnalytics />
       </head>
-      <body className="min-h-screen flex flex-col bg-white font-sans text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100">
+      <body className="flex flex-col font-sans text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100">
         <Header />
-        <main className="flex-1">
+        <main className="flex-1 flex flex-col">
           {children}
         </main>
         <Footer />

@@ -57,15 +57,17 @@ export function NewsletterSection() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              <div className="mt-8 rounded-2xl p-6 bg-white border border-neutral-200 shadow-sm dark:bg-white/10 dark:border-white/10">
+              className="mt-8"
             >
-              <CheckCircle className="mx-auto h-8 w-8 text-emerald-500" />
-              <p className="mt-3 text-lg font-semibold text-neutral-900 dark:text-white">
-                You are subscribed!
-              </p>
-              <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-                Check your inbox for a confirmation email.
-              </p>
+              <div className="rounded-2xl p-6 bg-white border border-neutral-200 shadow-sm dark:bg-white/10 dark:border-white/10">
+                <CheckCircle className="mx-auto h-8 w-8 text-emerald-500" />
+                <p className="mt-3 text-lg font-semibold text-neutral-900 dark:text-white">
+                  You are subscribed!
+                </p>
+                <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
+                  Check your inbox for a confirmation email.
+                </p>
+              </div>
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="mt-8 flex flex-col sm:flex-row items-center gap-3">

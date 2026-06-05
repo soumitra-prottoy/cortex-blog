@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ComparisonsPage() {
   return (
-    <div className="bg-white dark:bg-neutral-950">
+    <div className="flex-1 flex flex-col bg-white dark:bg-neutral-950">
       {/* Header */}
       <section className="border-b border-neutral-100 bg-neutral-50 py-16 dark:border-neutral-800 dark:bg-neutral-900/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
