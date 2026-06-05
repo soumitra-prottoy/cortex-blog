@@ -57,6 +57,8 @@ export default function RootLayout({
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" />
+        {/* TODO: Add Google Search Console verification meta tag here */}
+        {/* <meta name="google-site-verification" content="YOUR_CODE_HERE" /> */}
         <GoogleAnalytics />
       </head>
       <body className="flex flex-col font-sans text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100">
