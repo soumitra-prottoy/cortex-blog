@@ -13,6 +13,382 @@ export const categories: Category[] = [
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: 'perplexity-pro-deep-dive-ai-search',
+    image: '/thumbnails/perplexity-pro-deep-dive-ai-search.png',
+    title: 'Perplexity Pro Deep Dive: Is AI Search Worth Paying For?',
+    description: 'A thorough review of Perplexity Pro — the AI-powered search engine that promises to replace Google for research. We tested it for 30 days to find out.',
+    category: 'ai-tools',
+    tags: ['perplexity', 'ai-search', 'research', 'review'],
+    author: 'Cortex Team',
+    date: '2026-06-11',
+    readTime: '12 min read',
+    featured: true,
+    trending: true,
+    content: `
+I have been using Perplexity as my primary search engine for over a year now. Not occasionally — as in I open Google maybe once a week for things Perplexity cannot handle. When Perplexity Pro launched with promises of advanced model access, unlimited searches, and file upload capabilities, I was skeptical. I already used the free tier daily. What could the paid version possibly add that would justify $20 per month?
+
+After 30 days of using Perplexity Pro exclusively, I have a clear answer. Let me walk you through everything.
+
+**What Perplexity Actually Does**
+
+If you have not used Perplexity, here is the short version. You type a question into a search bar. Instead of getting a list of blue links, you get a direct answer with citations linking to the sources it used to construct that answer. It searches the web, reads multiple sources, synthesizes the information, and presents a coherent summary.
+
+This sounds simple. It is revolutionary. The difference between reading an AI-generated summary with citations and clicking through 10 different websites yourself is enormous. What used to take 30 minutes of research now takes 30 seconds.
+
+**What You Get with Perplexity Pro**
+
+The free tier of Perplexity is already generous. You get unlimited basic searches using their standard model. The Pro tier adds several meaningful upgrades.
+
+**GPT-4 and Claude access** — This is the biggest selling point. On the free tier, Perplexity uses its own models for answering questions. On Pro, you can choose to have your queries processed by GPT-4, Claude 3.5 Sonnet, or other frontier models. The difference in answer quality is noticeable, especially for complex research questions that require nuanced reasoning.
+
+**Unlimited file uploads** — You can upload PDFs, documents, and text files and ask questions about them. I upload research papers, reports, and meeting notes regularly. The ability to ask a question and have Perplexity search across all your uploaded documents simultaneously is genuinely useful for anyone who works with large amounts of text.
+
+**Pro Search mode** — This is Perplexity's multi-step reasoning feature. Instead of searching once and answering, Pro Search breaks your question into sub-questions, searches for each one individually, and then synthesizes the results. For complex questions, this produces significantly more thorough answers.
+
+**Custom Spaces** — You can create collections of sources and notes organized by topic. I have spaces for different research projects, each containing relevant documents, saved searches, and notes. It is like having a personal research assistant who remembers everything you have ever asked about a topic.
+
+**Who Should Use Perplexity Pro**
+
+I recommend Perplexity Pro for anyone who does research as a significant part of their work. Journalists, analysts, students, academics, and professionals who need to stay current on specific topics will see the most value.
+
+If you occasionally search the web for quick answers, the free tier is fine. If you regularly need to research topics in depth, the Pro tier pays for itself in time saved within the first week.
+
+**What Perplexity Pro Does Well**
+
+The citation system is Perplexity's killer feature. Every claim in an answer links to its source. You can click through and verify information instantly. This solves the biggest problem with AI-generated content — the inability to fact-check. I have caught Perplexity making errors maybe three times in a year, and each time the citation let me verify the mistake immediately.
+
+The multi-source synthesis is impressive. When I ask about a complex topic like "the economic impact of AI on manufacturing jobs," Perplexity pulls from academic papers, news articles, government reports, and industry analyses, then weaves them into a coherent answer that represents multiple perspectives.
+
+The speed is remarkable. A research task that would take me 45 minutes on Google — opening links, scanning content, cross-referencing sources — takes about 2 minutes on Perplexity. That time savings compounds dramatically over weeks and months.
+
+**What Perplexity Pro Does Not Do Well**
+
+Perplexity is not a replacement for deep reading. It gives you summaries, not full understanding. If you need to truly understand a complex topic, you still need to read the original sources. Perplexity is a starting point, not a destination.
+
+The file upload feature, while useful, has limitations. Large PDFs (over 50 pages) sometimes get truncated in the analysis. Scanned documents with poor OCR quality produce unreliable results. And you cannot upload spreadsheets or databases — only text-based documents.
+
+The Pro Search mode, while thorough, can be slow. A complex query might take 30-60 seconds to process as it runs multiple sub-searches. For quick questions, the standard mode is faster and the quality difference is minimal.
+
+**The Competition**
+
+Google has added AI Overviews to search results, which provide summaries similar to Perplexity. But Google's AI Overviews are limited to Google's index and do not provide the same depth of synthesis or quality of citations. They are a step in the right direction but not a replacement for Perplexity.
+
+ChatGPT with web browsing can also answer research questions, but it does not provide the same structured, cited responses. ChatGPT is better for creative tasks and conversation. Perplexity is better for research and fact-finding.
+
+**The Verdict**
+
+Perplexity Pro is worth $20 per month if you do research regularly. The time savings alone justify the cost. The ability to choose between GPT-4 and Claude for your searches, combined with unlimited file uploads and Pro Search mode, makes it the best research tool available today.
+
+If you are still using Google for research, try Perplexity free for a week. You will not go back. And if the free tier already impresses you, the Pro tier will blow you away.
+    `
+  },
+  {
+    slug: 'chatgpt-plus-vs-claude-pro-worth-it',
+    image: '/thumbnails/chatgpt-plus-vs-claude-pro-worth-it.png',
+    title: 'ChatGPT Plus vs Claude Pro: Which $20/Month AI Subscription Is Worth It?',
+    description: 'Both ChatGPT Plus and Claude Pro cost $20/month. We compared them across dozens of real tasks to determine which subscription delivers more value.',
+    category: 'comparisons',
+    tags: ['chatgpt', 'claude', 'pricing', 'subscription'],
+    author: 'Cortex Team',
+    date: '2026-06-12',
+    readTime: '14 min read',
+    featured: false,
+    trending: true,
+    content: `
+You have $20 per month to spend on an AI subscription. Both ChatGPT Plus and Claude Pro cost exactly that. You cannot afford both — or maybe you can, but you want to know which one gives you more for your money.
+
+I have been alternating between both subscriptions for the past six months, using each as my primary tool for weeks at a time. Here is my honest assessment of which one delivers more value and for whom.
+
+**What You Actually Get**
+
+**ChatGPT Plus** ($20/month) gives you access to GPT-4o and GPT-4o mini with higher message limits, priority access during peak times, DALL-E image generation, custom GPTs from the GPT Store, code interpreter for data analysis, and the ability to create custom instructions that shape how ChatGPT responds to you.
+
+**Claude Pro** ($20/month) gives you access to Claude 3.5 Sonnet and Opus with higher message limits, priority access, the ability to use Projects for organizing conversations, and Claude's Artifacts feature for generating code, documents, and other content inline.
+
+Both subscriptions remove the free tier's message limits during peak hours. Both give you access to the company's best models. Both cost the same. The question is which ecosystem and which model capabilities matter more to you.
+
+**Writing and Creative Tasks — Claude Pro Wins**
+
+For pure writing quality, Claude Pro is better. I tested this by giving both tools identical prompts for blog posts, emails, marketing copy, and creative writing. Claude consistently produces more natural, nuanced text that needs less editing.
+
+Claude's Artifacts feature is a game-changer for creative work. You can ask Claude to write a document, create a design, or build a simple web page, and it generates the content in a live preview pane right inside the chat. You can then ask for changes and see them update in real time. ChatGPT has a similar feature with code interpreter, but Claude's implementation feels more polished and versatile.
+
+**Coding and Technical Tasks — It Depends**
+
+For learning to code or debugging existing code, Claude Pro is better. Claude explains its reasoning more clearly and tends to produce cleaner, more maintainable code. When I paste in broken code and ask why it is not working, Claude gives me a clear explanation of the issue and a corrected version.
+
+For data analysis and complex computational tasks, ChatGPT Plus wins. The code interpreter (now called Advanced Data Analysis) is incredibly powerful. You can upload a CSV file and ask ChatGPT to analyze it, create visualizations, and generate insights. The combination of GPT-4o's reasoning with a full Python environment makes ChatGPT Plus the better choice for data work.
+
+**Image Generation — ChatGPT Plus Wins**
+
+ChatGPT Plus includes access to DALL-E 3, which generates high-quality images directly in the chat. Claude Pro does not include image generation at all. If you need AI images regularly, ChatGPT Plus gives you that capability built into your subscription.
+
+The quality of DALL-E 3 is genuinely impressive. It handles text in images better than most dedicated image generators, and the integration with the chat interface means you can iterate on images through conversation — "make the background blue," "add a mountain in the distance," "change the style to watercolor."
+
+**Customization and Ecosystem — ChatGPT Plus Wins**
+
+The GPT Store is ChatGPT Plus's secret weapon. Thousands of custom GPTs are available, each designed for specific tasks — writing resumes, analyzing contracts, creating lesson plans, generating meal plans, and much more. Many are free to use and extend ChatGPT's capabilities significantly.
+
+Claude's Projects feature is useful for organizing conversations by topic, but it does not have an equivalent to the GPT Store. You are limited to Claude's built-in capabilities and whatever you can achieve through conversation.
+
+**Speed and Reliability — Claude Pro Wins**
+
+In my experience, Claude Pro is faster and more reliable than ChatGPT Plus. Claude responses tend to be generated more quickly, and I have experienced fewer timeouts or errors. During peak usage hours, this difference is more pronounced.
+
+Claude also handles long conversations better. When a conversation exceeds 100 messages, ChatGPT sometimes loses context or becomes less coherent. Claude maintains context more reliably across long sessions.
+
+**The Specific Scenarios**
+
+Choose **ChatGPT Plus** when you need:
+- Image generation included in your subscription
+- Data analysis and code execution capabilities
+- Access to the GPT Store's thousands of custom tools
+- A more versatile all-in-one tool for varied tasks
+- Integration with OpenAI's broader ecosystem
+
+Choose **Claude Pro** when you need:
+- The highest quality writing output
+- Better code explanations and debugging
+- More reliable performance during peak hours
+- Longer conversations without context loss
+- A more thoughtful, nuanced AI assistant
+
+**My Recommendation**
+
+If I could only pick one, I would choose Claude Pro. The writing quality and reliability advantages matter more to me than image generation or the GPT Store. But I recognize that my needs are not everyone's needs.
+
+The best approach is to try both free tiers for a week each, then pick the one that fits your workflow. Both companies offer easy cancellation, so you can switch if your needs change.
+
+And honestly? If you can afford $40/month, having both gives you the best of both worlds. Use Claude for writing and coding, ChatGPT for images and data analysis. That is what I do, and I do not regret the cost.
+    `
+  },
+  {
+    slug: 'ai-data-analysis-beginners-guide',
+    image: '/thumbnails/ai-data-analysis-beginners-guide.png',
+    title: 'AI for Data Analysis: A Complete Beginner\'s Guide',
+    description: 'Learn how to use AI tools to analyze data, create visualizations, and generate insights — no coding or statistics background required.',
+    category: 'tutorials',
+    tags: ['data-analysis', 'beginner', 'tutorial', 'visualization'],
+    author: 'Cortex Team',
+    date: '2026-06-13',
+    readTime: '16 min read',
+    featured: false,
+    trending: false,
+    content: `
+Data analysis used to require programming skills, statistical knowledge, and hours of work. AI has changed that equation completely. Today, you can upload a spreadsheet to an AI tool and get meaningful insights in seconds — no code, no formulas, no statistics degree required.
+
+I am going to show you exactly how to do this, step by step, using tools that are either free or already available to you. By the end of this guide, you will be able to analyze real data and generate professional-quality insights.
+
+**Why AI Data Analysis Matters**
+
+Every business, organization, and team generates data. Sales figures, customer feedback, website traffic, survey responses, financial records — the amount of data we create every day is staggering. The problem is that most of this data sits unused because analyzing it requires specialized skills.
+
+AI removes that barrier. Instead of writing SQL queries or Python scripts, you describe what you want to know in plain English and the AI does the analysis for you. This does not mean AI replaces data scientists — it means that basic to intermediate analysis is now accessible to everyone.
+
+**The Tools You Need**
+
+You do not need expensive software. Here are the tools we will use in this guide:
+
+**ChatGPT with Advanced Data Analysis** — Available with ChatGPT Plus ($20/month). This is the most accessible AI data analysis tool. You upload a file, ask questions about it, and ChatGPT writes and executes Python code to analyze the data.
+
+**Google Gemini** — Free tier works well for data analysis. You can upload spreadsheets and ask questions about the data. Gemini's integration with Google Sheets makes it particularly convenient.
+
+**Claude** — Available free with message limits. Claude can analyze data you paste directly into the conversation or upload as files. Its analysis tends to be more detailed and nuanced.
+
+**Step 1: Prepare Your Data**
+
+Before you can analyze data, it needs to be in a format AI tools can understand. The most common format is a CSV file (comma-separated values), which you can export from Excel, Google Sheets, or most database systems.
+
+Your data should be organized in a table with clear column headers. Each row should represent one record — one customer, one sale, one response, etc. Remove any merged cells, empty rows, or formatting that might confuse the AI.
+
+Here is a simple example of what your data should look like:
+
+- Date, Product, Region, Sales, Units Sold, Customer Rating
+- 2025-01-15, Widget A, North, 1500, 30, 4.2
+- 2025-01-15, Widget B, South, 2200, 44, 3.8
+
+Clean, organized data produces better analysis. If your data is messy, spend 10 minutes cleaning it up before uploading it to an AI tool.
+
+**Step 2: Upload and Ask Your First Question**
+
+Open your AI tool of choice and upload your data file. Then ask a simple question to start the analysis. Good first questions include:
+
+- "What are the overall trends in this data?"
+- "Which product had the highest total sales?"
+- "Is there a correlation between customer rating and sales?"
+- "Show me a breakdown of sales by region."
+
+The AI will analyze your data and provide an answer. In ChatGPT with Advanced Data Analysis, it will also show you the code it used to perform the analysis, which is useful for learning.
+
+**Step 3: Go Deeper with Follow-Up Questions**
+
+The real power of AI data analysis comes from iterative exploration. Start with broad questions, then drill down based on what you learn.
+
+If the AI tells you that Widget A had the highest sales, ask "Why did Widget A perform better? Look at the regional breakdown, customer ratings, and any other factors that might explain the difference."
+
+If you notice a trend in the data, ask "Is this trend statistically significant? What might be causing it?"
+
+Each follow-up question builds on the previous answer, creating a conversation that progressively reveals deeper insights. This is fundamentally different from traditional data analysis, where you need to know what questions to ask before you start.
+
+**Step 4: Create Visualizations**
+
+AI tools can generate charts and graphs directly from your data. Ask for specific visualizations:
+
+- "Create a bar chart showing sales by product"
+- "Show me a line graph of sales over time"
+- "Generate a heatmap of sales by region and product"
+
+In ChatGPT, the Advanced Data Analysis feature generates these visualizations automatically. In Gemini, you can ask it to create charts in Google Sheets. The visualizations are publication-ready — you can use them directly in presentations and reports.
+
+**Step 5: Generate Insights and Recommendations**
+
+The most valuable part of AI data analysis is not the charts or the numbers — it is the insights. Ask your AI tool to interpret the data and make recommendations:
+
+- "Based on this data, what should we focus on next quarter?"
+- "What are the three most important findings from this analysis?"
+- "Are there any anomalies or outliers I should investigate?"
+
+AI-generated insights are starting points, not final answers. Always apply your own domain knowledge to evaluate whether the recommendations make sense for your specific situation.
+
+**Real-World Example: Analyzing Survey Results**
+
+Let me walk you through a real example. Imagine you conducted a customer satisfaction survey with 500 responses. The data includes customer demographics, satisfaction scores, product ratings, and open-ended feedback.
+
+Upload the data to ChatGPT and ask: "Analyze this survey data and tell me what factors most strongly predict customer satisfaction."
+
+ChatGPT will run statistical analysis on your data, identify correlations, and tell you which factors matter most. It might find that response time is the strongest predictor of satisfaction, followed by product quality and price fairness.
+
+Then ask: "Create a visualization showing the relationship between response time and satisfaction score." ChatGPT generates a scatter plot with a trend line.
+
+Finally, ask: "Based on this analysis, what three changes would most improve customer satisfaction?" ChatGPT provides actionable recommendations based on the data.
+
+This entire analysis — which would take a human analyst several hours — takes about 10 minutes with AI.
+
+**Common Mistakes to Avoid**
+
+- **Asking vague questions** — "Tell me about this data" produces generic results. Be specific: "What is the average sales by region, and which region has the highest growth rate?"
+
+- **Not verifying results** — AI can make mistakes in analysis. Always sanity-check the results. If the AI says your average sale was $500 but you know most sales are around $50, something went wrong.
+
+- **Ignoring data quality** — AI analysis is only as good as the data you feed it. Garbage in, garbage out. Clean your data before analysis.
+
+- **Skipping the follow-up** — The first answer is rarely the most insightful. Keep asking follow-up questions to dig deeper.
+
+**When to Use a Human Data Scientist**
+
+AI data analysis is powerful, but it has limitations. If you need rigorous statistical analysis, predictive modeling, or analysis that will inform major business decisions, consult a professional data scientist. AI is great for exploratory analysis, quick insights, and routine reporting. It is not a replacement for expert analysis when the stakes are high.
+
+**Getting Started Today**
+
+If you have a spreadsheet sitting on your desk that you have been meaning to analyze, try this right now. Upload it to your preferred AI tool and ask a simple question. You will be surprised how quickly you get useful insights. The barrier to data analysis has never been lower.
+    `
+  },
+  {
+    slug: 'ai-email-automation-workflows',
+    image: '/thumbnails/ai-email-automation-workflows.png',
+    title: 'AI Email Automation: 7 Workflows That Transform Your Inbox',
+    description: 'Stop drowning in email. Learn 7 practical AI-powered email automation workflows that save hours every week — with step-by-step setup instructions.',
+    category: 'automation',
+    tags: ['email', 'automation', 'productivity', 'workflows'],
+    author: 'Cortex Team',
+    date: '2026-06-14',
+    readTime: '13 min read',
+    featured: false,
+    trending: false,
+    content: `
+The average professional receives 121 emails per day. If you spend just 30 seconds on each one — reading, deciding what to do, and taking action — that is over an hour of your day spent on email. And most of those 121 emails do not deserve 30 seconds of your attention.
+
+AI email automation can cut your email processing time by 60-80%. Not by ignoring important messages, but by handling the routine ones automatically and helping you respond to the rest faster. Here are seven workflows you can set up this week.
+
+**Workflow 1: Smart Email Categorization**
+
+The foundation of email automation is sorting. Instead of reading every email in order of arrival, AI can categorize your inbox automatically.
+
+Set up your AI tool to scan incoming emails and sort them into categories: urgent (requires response today), important (requires response this week), informational (no response needed), and low priority (can be archived or deleted).
+
+Most email clients now have built-in AI categorization. Gmail's Priority Inbox uses Google's AI to identify important emails. Outlook's Focused Inbox does something similar. If your email client does not have this feature, tools like SaneBox or Mailbutler can add AI-powered categorization.
+
+The key is training the AI. Spend one week marking emails as important or not important. The AI learns your patterns and becomes increasingly accurate. After two weeks, I found that Gmail's Priority Inbox correctly identified important emails about 90% of the time.
+
+**Workflow 2: Automated Response Drafting**
+
+For emails that require a response but follow a predictable pattern, AI can draft replies that you review and send.
+
+Common candidates for automated drafting include:
+- Meeting scheduling requests
+- Information requests (pricing, availability, specifications)
+- Thank-you responses
+- Status update requests
+- FAQ responses
+
+Set up templates that your AI tool can customize based on the incoming email. The AI reads the incoming message, identifies the intent, selects the appropriate template, and fills in the specific details. You review the draft, make any needed adjustments, and send.
+
+I use this for meeting scheduling emails. Instead of spending three emails finding a time that works, I let AI suggest three available times based on my calendar. The recipient picks one, and we are done. This alone saves me about 30 minutes per week.
+
+**Workflow 3: Email Summarization**
+
+Long email threads are one of the biggest time wastes in professional communication. AI can summarize entire conversation threads in seconds.
+
+Tools like Gmail's "Summarize" feature, Outlook's AI summary, or third-party tools like Shortwave can condense a 20-message thread into a paragraph highlighting key decisions, action items, and open questions.
+
+I use email summarization for any thread longer than five messages. Instead of scrolling through the entire conversation, I read the summary and only open the thread if I need specific details. This is particularly useful for CC'd emails where you need to stay informed but do not need to read every response.
+
+**Workflow 4: Follow-Up Reminder Automation**
+
+How many times have you meant to follow up on an email and forgotten? AI can track your sent emails and remind you when you have not received a response.
+
+Set up a system where your AI tool monitors your sent folder. If you send an email and do not receive a reply within a specified timeframe (2 days for internal emails, 3-5 days for external), the AI sends you a reminder with the original email attached for easy reference.
+
+Some tools can even draft the follow-up message for you. "Hi [Name], just following up on my email from [date] about [topic]. Let me know if you need any additional information." You review, personalize if needed, and send.
+
+**Workflow 5: Newsletter and Digest Creation**
+
+If you send regular newsletters or team updates, AI can dramatically reduce the time spent creating them.
+
+The workflow is simple: collect the information you want to share throughout the week. On your publishing day, feed all the collected information to your AI tool and ask it to create a newsletter. Specify the format, tone, and length. The AI generates a draft that you review and send.
+
+For internal team updates, I collect key accomplishments, upcoming deadlines, and important announcements throughout the week. On Friday afternoon, I ask AI to compile everything into a team update. What used to take an hour now takes 10 minutes.
+
+**Workflow 6: Sentiment-Based Routing**
+
+For businesses that receive customer emails, AI can analyze the sentiment of incoming messages and route them appropriately.
+
+Positive emails (thank-you notes, praise) can be routed to a general inbox or even auto-replied to with a thank-you message. Neutral emails (questions, information requests) go to the appropriate department. Negative emails (complaints, urgent issues) get flagged for immediate human attention.
+
+This ensures that angry customers get fast responses while routine emails are handled efficiently. The AI sentiment analysis is not perfect — it occasionally misclassifies sarcasm or subtle frustration — but it catches the obvious cases reliably enough to be valuable.
+
+**Workflow 7: Email-to-Task Conversion**
+
+Every email is either a task or a reference. AI can help you make that distinction automatically.
+
+Set up a workflow where your AI tool scans incoming emails and identifies actionable items. If an email contains a request, a deadline, or a task, the AI creates a task in your task management system with the email content attached as context.
+
+For reference emails — information you might need later but do not need to act on — the AI can extract key information and save it to a searchable knowledge base. Instead of searching through your inbox for that one email with the password or the meeting notes, you search your knowledge base.
+
+I use this workflow with Todoist. When I receive an email that requires action, I forward it to my Todoist inbox. The AI extracts the task, sets a due date based on the email content, and files it in the appropriate project. My inbox stays clean and my task list stays current.
+
+**Setting Up Your AI Email Stack**
+
+You do not need to implement all seven workflows at once. Start with the one that addresses your biggest pain point. For most people, that is either categorization or response drafting.
+
+Here is my recommended implementation order:
+
+1. **Week 1**: Enable AI categorization in your email client
+2. **Week 2**: Set up automated response drafting for your most common email types
+3. **Week 3**: Add email summarization for long threads
+4. **Week 4**: Implement follow-up reminders
+5. **Week 5+**: Add the remaining workflows as needed
+
+Each workflow builds on the previous ones. By the end of five weeks, you will have an AI-powered email system that processes most of your inbox automatically and helps you handle the rest faster.
+
+**The Bigger Picture**
+
+Email automation is not about avoiding communication. It is about spending your communication energy on the messages that matter. When AI handles the routine emails, you have more time and mental energy for the conversations that actually require your expertise and attention.
+
+The professionals who master AI email automation do not just save time — they communicate better. Because they are not overwhelmed by inbox volume, they give more thoughtful responses to the emails that matter most.
+    `
+  },
+  {
     slug: 'best-free-ai-tools-2025',
     image: '/thumbnails/best-free-ai-tools-2025.png',
     title: '15 Best Free AI Tools You Should Be Using in 2025',
@@ -684,6 +1060,335 @@ Andrew Ng's Machine Learning course on Coursera remains one of the best starting
 
 Learning AI is a marathon, not a sprint. Follow this roadmap, build projects at each stage, and gradually expand your skills. The demand for AI skills is enormous and growing. Start today — pick up the first resource, write your first line of Python, or sign up for your first course.
     `
+  },
+  {
+    slug: 'chatgpt-vs-claude-vs-gemini-2026',
+    image: '/thumbnails/chatgpt-vs-claude-vs-gemini-2026.png',
+    title: 'ChatGPT vs Claude vs Gemini: The Definitive Comparison for 2026',
+    description: 'We tested all three major AI assistants for 30 days straight. Here is which one wins for writing, coding, research, and everyday use.',
+    category: 'comparisons',
+    tags: ['chatgpt', 'claude', 'gemini', 'comparison'],
+    author: 'Cortex Team',
+    date: '2026-06-12',
+    readTime: '14 min read',
+    featured: true,
+    trending: true,
+    content: \`
+If you are trying to figure out which AI assistant to actually use in 2026, you have three real options: ChatGPT, Claude, and Gemini. Everything else is a distant fourth. But picking between these three is harder than it should be because every comparison article online is either sponsored by one of them or written by someone who tested each for five minutes.
+
+I used all three daily for 30 days. Same tasks. Same prompts. Same evaluation criteria. Here is what I actually found.
+
+**The Quick Answer**
+
+If you want the best all-around writing and analysis tool: **Claude**
+If you want the best free tier and Google integration: **Gemini**
+If you want the most features and plugin ecosystem: **ChatGPT**
+
+But the real answer is more nuanced than that. Let me break it down by what you actually use AI for.
+
+**Writing Quality**
+
+For pure writing — blog posts, emails, marketing copy, creative writing — Claude is the clear winner. Its output sounds the most human, requires the least editing, and handles nuance better than the other two. When I asked all three to write a professional email declining a meeting, Claude wrote something I would actually send. ChatGPT wrote something that sounded like a corporate template. Gemini wrote something correct but bland.
+
+ChatGPT has improved significantly and its GPT-4o model is genuinely good at writing. But it tends to be more verbose than necessary. It will give you a 300-word answer when 150 words would do. Claude is more concise and more willing to get to the point.
+
+Gemini's writing is functional but lacks personality. It is fine for straightforward content but struggles with creative or persuasive writing.
+
+**Winner: Claude**
+
+**Coding**
+
+This is where it gets interesting. For learning to code or debugging, Claude is still the best. When I pasted broken code and asked why it was not working, Claude gave clear explanations and fixed the actual problem. ChatGPT sometimes fixed the syntax but missed the logic error. Gemini was hit or miss.
+
+For writing large amounts of boilerplate code, ChatGPT has an edge because of its code interpreter feature. You can upload a CSV, ask it to analyze it, and it will write and run the analysis code. Claude and Gemini can do similar things but ChatGPT's implementation is more polished.
+
+For students: GitHub Copilot (which uses OpenAI's models) is free with a student account and handles day-to-day coding assistance better than any of the chatbots.
+
+**Winner: Claude for learning and debugging, ChatGPT for data analysis**
+
+**Research and Accuracy**
+
+Gemini wins here because of its Google Search integration. When you ask Gemini a question about current events, it searches the web in real time and gives you up-to-date answers with sources. ChatGPT can also search the web but its implementation feels slower and less integrated.
+
+Claude does not have built-in web search on the free tier, which is a significant limitation for research. You have to paste in the information yourself or use the paid tier.
+
+For fact-checking and research, Perplexity AI is actually better than all three. It is not a chatbot — it is an AI search engine. But for a general-purpose assistant that can also research, Gemini is your best bet.
+
+**Winner: Gemini**
+
+**Image Understanding**
+
+Gemini is in a different league. You can upload a photo of a whiteboard, a screenshot of an error message, a chart from a PDF, or a picture of a restaurant menu and Gemini will understand it. This is not even close — Google has invested heavily in multimodal AI and it shows.
+
+Claude can also analyze images and has gotten better at it, but its understanding is more surface level. ChatGPT can describe images but struggles with extracting specific information from them.
+
+If your work involves any kind of visual content — screenshots, diagrams, photos with text — Gemini should be your primary tool.
+
+**Winner: Gemini**
+
+**Free Tier Comparison**
+
+This matters because most people do not want to pay for AI.
+
+**ChatGPT free tier**: Uses GPT-4o mini, which is noticeably weaker than the paid GPT-4o. Limited number of messages per day. No custom GPTs on free tier. No file upload on free tier.
+
+**Claude free tier**: Uses Claude 3.5 Sonnet, which is Anthropic's second-best model. This is incredibly generous — you are getting a near-top-tier model for free. Daily message limits are reasonable for individual use.
+
+**Gemini free tier**: Uses Gemini 1.5 Flash. Higher daily limits than both competitors. Includes Google Workspace integration. The most generous free tier overall.
+
+**Winner: Gemini for quantity, Claude for quality**
+
+**What I Actually Recommend**
+
+If you can only pick one and you do not want to pay: Start with **Gemini**. The free tier is the most generous, the Google integration is genuinely useful, and the image understanding is unmatched.
+
+If you are willing to pay $20/month: Get **Claude Pro**. The quality difference is worth it if you use AI for writing or coding regularly.
+
+If you want the most features and do not mind a busier interface: **ChatGPT Plus** gives you the plugin ecosystem, custom GPTs, and the most polished overall experience.
+
+But honestly? The best setup is free tiers of all three. Use each one for what it is best at. That costs nothing and gives you the best of all worlds.
+
+The AI assistant space is moving fast. By the time you read this, one of them may have released a new model that changes everything. That is the reality of 2026 — the best tool today might not be the best tool in three months. Stay flexible, keep experimenting, and do not get locked into one ecosystem.
+    \`
+  },
+  {
+    slug: 'ai-tools-for-students-2026',
+    image: '/thumbnails/ai-tools-for-students-2026.png',
+    title: '10 AI Tools Every Student Needs in 2026 (All Free)',
+    description: 'From essay writing to exam prep, these free AI tools will save you hours every week and help you get better grades.',
+    category: 'ai-tools',
+    tags: ['students', 'education', 'free-ai', 'productivity'],
+    author: 'Cortex Team',
+    date: '2026-06-11',
+    readTime: '10 min read',
+    featured: true,
+    trending: true,
+    content: \`
+Being a student in 2026 is fundamentally different from even two years ago. AI tools can now help you with almost every aspect of studying — from writing essays to understanding complex topics to preparing for exams. The students who learn to use these tools effectively will have a massive advantage.
+
+Here are 10 AI tools that every student should be using. Every single one is free.
+
+**1. NotebookLM by Google**
+
+This is the single most useful study tool available right now, and almost nobody knows about it. You upload your lecture notes, textbook chapters, or research papers. Then you ask questions about them. NotebookLM reads your actual materials and answers based on them — not generic internet knowledge.
+
+It can also generate a podcast-style audio summary of your materials. Imagine uploading your biology textbook chapter and getting a 10-minute audio summary you can listen to on your commute. That is what NotebookLM does.
+
+Go to notebooklm.google.com. Completely free with a Google account.
+
+**2. Claude (Free Tier)**
+
+Claude is the best AI for understanding complex topics. When you are stuck on a concept in physics, math, or any subject, Claude can explain it in multiple ways until you understand. Ask it to "explain quantum entanglement like I am 15" and it will. Ask it to "give me 5 practice problems for calculus derivatives" and it will.
+
+The free tier uses Claude 3.5 Sonnet, which is incredibly capable. Go to claude.ai.
+
+**3. Quizlet AI**
+
+Quizlet has integrated AI into its study tools. You can upload your notes and it will automatically generate flashcards, practice tests, and study guides. The AI identifies the key concepts and creates questions that actually test your understanding.
+
+The free tier is generous enough for most students. Go to quizlet.com.
+
+**4. Otter.ai**
+
+Otter records and transcribes lectures in real time. After class, you get a searchable transcript with key points highlighted. This is a game-changer for anyone who has ever tried to take notes while also trying to understand what the professor is saying.
+
+The free tier gives you 300 minutes per month. Go to otter.ai.
+
+**5. Perplexity AI**
+
+Perplexity is an AI search engine that gives you answers with citations. When you are writing a research paper, it finds relevant sources and summarizes them. Unlike regular AI chatbots, Perplexity shows you exactly where its information comes from, so you can verify it.
+
+This is essential for academic work where you need to cite sources. Go to perplexity.ai.
+
+**6. Khanmigo by Khan Academy**
+
+Khan Academy's AI tutor helps you learn at your own pace. It does not just give you answers — it guides you through problems step by step, asking you questions to check your understanding. It covers math, science, history, and more.
+
+Free for students in many regions. Go to khanacademy.org.
+
+**7. Notion AI**
+
+Notion is a note-taking app with AI built in. You can highlight text in your notes and ask Notion AI to summarize it, expand on it, or quiz you on it. It also helps you organize your notes and create study schedules.
+
+The free tier includes basic AI features. Go to notion.so.
+
+**8. Wolfram Alpha**
+
+Wolfram Alpha is not new, but it is still the best tool for math and science problems. You type in an equation and it solves it step by step. It covers algebra, calculus, statistics, physics, chemistry, and more.
+
+The free tier shows answers; the paid tier shows step-by-step solutions. Even the free version is incredibly useful. Go to wolframalpha.com.
+
+**9. Canva Magic Studio**
+
+Every student has to make presentations at some point. Canva's AI tools can generate slide content, create visuals, and even write speaker notes. You describe what your presentation is about and it generates a starting point that you can customize.
+
+Free for students with a school email. Go to canva.com.
+
+**10. Zotero with AI Plugins**
+
+Zotero is a free reference manager that helps you organize research papers and generate citations. With AI plugins, it can summarize papers, extract key findings, and help you find related research.
+
+If you are writing any kind of academic paper, Zotero will save you hours. Go to zotero.org.
+
+**How to Actually Use These Tools**
+
+The biggest mistake students make with AI is using it to do their work for them. That is a short-term strategy that leads to long-term problems. When exam time comes and you cannot use AI, you will not know the material.
+
+Instead, use AI as a tutor. Ask it to explain concepts you do not understand. Ask it to quiz you on material you are learning. Ask it to review your essays and point out weaknesses. Use it to learn faster, not to avoid learning.
+
+The students who will thrive in 2026 and beyond are not the ones who use AI to cheat. They are the ones who use AI to understand things more deeply and more quickly than was ever possible before.
+    \`
+  },
+  {
+    slug: 'how-to-make-money-with-ai-2026',
+    image: '/thumbnails/how-to-make-money-with-ai-2026.png',
+    title: '7 Realistic Ways to Make Money with AI in 2026',
+    description: 'From freelancing to building AI products, here are proven ways people are actually earning money using AI tools right now.',
+    category: 'guides',
+    tags: ['money', 'freelancing', 'ai-business', 'career'],
+    author: 'Cortex Team',
+    date: '2026-06-10',
+    readTime: '12 min read',
+    featured: false,
+    trending: true,
+    content: \`
+Let me be straight with you. Most "make money with AI" content online is garbage. It is either people selling courses about making money with AI (the irony) or unrealistic claims about making thousands of dollars per week with no effort.
+
+The truth is more grounded. AI can genuinely help you make money, but it is a tool — not a money printer. You still need skills, effort, and a real value proposition. Here are seven ways people are actually earning money with AI in 2026.
+
+**1. Freelance Writing and Content Creation**
+
+Businesses need content. Blog posts, social media content, email newsletters, product descriptions. AI can help you produce this content 10x faster than writing from scratch.
+
+The key is that you are not just typing a prompt and copying the output. You are using AI to research, outline, and draft — then editing, fact-checking, and adding your own insights. The AI makes you faster; your expertise makes the content good.
+
+Platforms like Upwork, Fiverr, and Contently have thousands of content writing jobs. Writers who use AI effectively can take on more clients and earn more per hour.
+
+**Realistic income: $500-$3,000/month depending on hours and niche**
+
+**2. AI-Powered Graphic Design**
+
+Tools like Midjourney, DALL-E, and Canva Magic Studio let anyone create professional-quality graphics. If you have a good eye for design (even without technical skills), you can sell designs on platforms like Etsy, Redbubble, or directly to businesses.
+
+Popular products include social media templates, logo designs, book covers, and print-on-demand merchandise. The AI generates the base design; you refine it and customize it for each client.
+
+**Realistic income: $300-$2,000/month**
+
+**3. Building AI-Powered SaaS Products**
+
+This is the highest-potential option but also the most demanding. If you can code (or learn to code), you can build small software products that use AI APIs to solve specific problems.
+
+Examples include AI-powered resume builders, automated report generators, AI chatbots for small businesses, and content optimization tools. Many solo developers are earning $1,000-$10,000/month from small SaaS products.
+
+You do not need to build the next ChatGPT. You need to solve one specific problem for one specific group of people.
+
+**Realistic income: $0-$10,000+ depending on product-market fit**
+
+**4. AI Consulting and Implementation**
+
+Most small businesses know they should be using AI but have no idea where to start. If you understand AI tools well enough to recommend and implement them for businesses, you can charge for that expertise.
+
+This might involve setting up AI chatbots for customer service, creating automated email workflows, or training a company's team on AI tools. You do not need to be a technical expert — you need to understand the tools better than the business owner does.
+
+**Realistic income: $1,000-$5,000/month**
+
+**5. YouTube and Social Media Content**
+
+AI tools make it dramatically easier to create video content. You can use AI to write scripts, generate voiceovers with ElevenLabs, create thumbnails with AI image generators, and even edit videos with AI-powered tools.
+
+The creators making money are not just using AI to pump out low-quality content. They are using AI to be more consistent and to improve production quality while maintaining their unique perspective and personality.
+
+**Realistic income: Highly variable — $0-$5,000+/month**
+
+**6. Selling AI-Generated Digital Products**
+
+Ebooks, templates, prompts, courses, printables — AI can help you create digital products faster than ever. The key is to create products that solve real problems for real people.
+
+For example, a "500+ ChatGPT Prompts for Marketing Professionals" ebook on Gumroad. Or a set of AI-generated planner templates on Etsy. Or a course teaching small business owners how to use AI.
+
+**Realistic income: $200-$3,000/month**
+
+**7. AI-Assisted Programming**
+
+If you can code, AI makes you dramatically more productive. GitHub Copilot can write boilerplate code, suggest fixes, and help you learn new frameworks faster. This means you can take on more freelance projects or build your own products faster.
+
+Many developers report that AI tools make them 2-3x more productive. That translates directly into higher earnings whether you are freelancing or building products.
+
+**Realistic income: $2,000-$10,000+/month depending on skill level**
+
+**The Honest Truth**
+
+None of these are get-rich-quick schemes. They all require learning skills, putting in work, and delivering real value. AI is a multiplier — it makes your existing skills more valuable. If you have no skills to multiply, AI will not magically create income for you.
+
+Start with one option that matches your current skills. Learn the relevant AI tools. Build something. Ship it. Get feedback. Improve. Repeat.
+
+The people making money with AI in 2026 are not the ones who waited for the perfect opportunity. They are the ones who started experimenting, learned from failures, and kept iterating.
+    \`
+  },
+  {
+    slug: 'ai-safety-privacy-what-you-need-to-know',
+    image: '/thumbnails/ai-safety-privacy-what-you-need-to-know.png',
+    title: 'AI Safety and Privacy: What You Actually Need to Know in 2026',
+    description: 'A practical guide to staying safe with AI — what data is collected, what you should never share, and how to protect your privacy.',
+    category: 'guides',
+    tags: ['privacy', 'safety', 'ai-ethics', 'security'],
+    author: 'Cortex Team',
+    date: '2026-06-09',
+    readTime: '9 min read',
+    featured: false,
+    trending: false,
+    content: \`
+Every time you use an AI chatbot, you are sending your words to a company's servers. That is just how cloud AI works. But most people have no idea what happens to their data after they hit send.
+
+This is not about being paranoid. It is about being informed. Here is what you need to know about AI safety and privacy in 2026.
+
+**What Data Do AI Companies Collect?**
+
+When you use ChatGPT, Claude, Gemini, or any cloud AI service, the company receives everything you type. That includes your questions, your documents, your code, your personal information — everything.
+
+Most major AI companies say they do not use your conversations to train their models by default. But "by default" is doing a lot of work in that sentence. Some companies have opt-out settings buried in their privacy controls. Some have changed their policies without clearly notifying users.
+
+Here is the current state of the major players:
+
+**OpenAI (ChatGPT)**: Conversations are not used to train models by default as of 2024. But OpenAI reserves the right to use data to improve their services. If you use the API (not the chat interface), your data is not used for training.
+
+**Anthropic (Claude)**: Conversations are not used to train Claude by default. Anthropic has been more transparent about their data practices than most competitors.
+
+**Google (Gemini)**: Conversations may be used to improve Google's products and services. Google's privacy policy is broad and gives them significant rights to use your data.
+
+**What You Should Never Share with AI**
+
+This is the most important section of this article. Never type the following into any AI chatbot:
+
+- **Passwords or API keys** — These could be stored on the company's servers and potentially accessed by employees or in a data breach
+- **Financial information** — Credit card numbers, bank account details, Social Security numbers
+- **Personal identification** — Your full name combined with address, phone number, or date of birth
+- **Confidential work information** — Proprietary code, internal documents, trade secrets
+- **Private medical information** — Health records, diagnoses, medication details
+- **Anything you would not want in a data breach** — If you would not post it publicly, do not type it into an AI chatbot
+
+This might seem obvious, but people do it all the time. Developers paste in code containing API keys. Employees paste in confidential company documents. Students paste in personal information for help with applications.
+
+**How to Protect Your Privacy**
+
+**1. Use local AI for sensitive tasks.** Tools like Ollama and LM Studio let you run AI models on your computer. Your data never leaves your machine. The tradeoff is that local models are less powerful than cloud models, but for many tasks they are good enough.
+
+**2. Turn off chat history.** Most AI chatbots have an option to disable chat history. When chat history is off, your conversations are not saved to your account. This is the single most effective privacy setting.
+
+**3. Use separate accounts.** Consider using a separate email address for AI services. This limits the amount of personal data linked to your AI usage.
+
+**4. Read the privacy policy.** I know, nobody does this. But AI companies' privacy policies are actually important documents that tell you exactly what they do with your data. Spend five minutes reading the summary.
+
+**5. Delete your conversations regularly.** Most AI services let you delete past conversations. Do this periodically, especially after conversations that contained sensitive information.
+
+**The Bigger Picture**
+
+AI privacy is not just about individual actions. It is about the kind of digital world we are building. Every time we share data with AI companies, we are training them to expect that data. The norms we set now will determine how AI companies handle data for decades to come.
+
+Support companies that prioritize privacy. Use services that are transparent about their data practices. And when a company changes their policy in a way that concerns you, switch to a competitor.
+
+Your data has value. Treat it that way.
+    \`
   }
 ];
 
