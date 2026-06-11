@@ -19,7 +19,7 @@ const stagger = {
   },
 };
 
-export function HeroSection() {
+export function HeroSection({ postCount = 10 }: { postCount?: number }) {
   return (
     <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
       {/* Neural canvas background */}
@@ -133,7 +133,7 @@ export function HeroSection() {
           transition={{ delay: 0.6, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           {[
-            { value: '10', label: 'Articles' },
+            { value: String(postCount), label: 'Articles' },
             { value: '8', label: 'AI Tools' },
             { value: '4', label: 'Roadmaps' },
           ].map((stat) => (

@@ -75,7 +75,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(categoryJsonLd) }}
       />
-      <HeroSection />
+      <HeroSection postCount={blogPosts.length} />
       <FeaturedPostsSection />
       <RecentPostsSection />
       <RoadmapsSection />
