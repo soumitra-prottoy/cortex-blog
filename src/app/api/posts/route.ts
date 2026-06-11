@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { blogPosts } from '@/data';
 
+export const revalidate = 0;
+
 export async function GET() {
   const posts = blogPosts.map(p => ({
     slug: p.slug,
