@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
 const nav = [
+  { href: '/dashboard/command-center', label: 'Command Center', icon: GridIcon },
   { href: '/dashboard', label: 'Overview', icon: HomeIcon },
   { href: '/dashboard/posts', label: 'Posts', icon: FileIcon },
   { href: '/dashboard/analytics', label: 'Analytics', icon: ChartIcon },
@@ -64,6 +65,17 @@ export default function DashboardSidebar() {
         </button>
       </div>
     </aside>
+  );
+}
+
+function GridIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <rect x="14" y="14" width="7" height="7" rx="1" />
+    </svg>
   );
 }
 
