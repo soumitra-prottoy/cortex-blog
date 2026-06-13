@@ -1,1 +1,5 @@
 # Ignore .github dir but keep workflow tracked\n.github/\n# Re-enable workflow\n!.github/workflows/\n# But the workflow file itself needs to not be pushed due to token scope\n# It already exists on the main branch from before
+
+# Build output
+.next/
+node_modules/

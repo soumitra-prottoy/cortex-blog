@@ -48,10 +48,11 @@ export default function AboutPage() {
 
           <h2>Contact Us</h2>
           <p>
-            Have a question, suggestion, or want to collaborate? Reach out to us at{' '}
-            <Link href="mailto:hello@cortex-blog.com" className="text-blue-600 dark:text-blue-400 hover:underline">
-              hello@cortex-blog.com
+            Have a question, suggestion, or want to collaborate?{' '}
+            <Link href="/contact" className="text-blue-600 dark:text-blue-400 hover:underline">
+              Send us a message
             </Link>
+            .
           </p>
         </div>
       </section>
