@@ -1551,5 +1551,131 @@ export const roadmaps: Roadmap[] = [
     { title: 'Week 4-6: First Contributions', description: 'Start with documentation improvements, bug fixes, and small features. Learn the pull request and code review process.' },
     { title: 'Week 7-9: Meaningful Contributions', description: 'Tackle larger issues. Implement meaningful features. Review other contributors code and provide constructive feedback.' },
     { title: 'Week 10-12: Build Your Own Project', description: 'Launch your own open-source AI tool. Build a community around it and learn to maintain a growing project.' }
-  ], tags: ['open-source', 'contribution', 'community'] }
+  ], tags: ['open-source', 'contribution', 'community'] },
+  {
+    slug: 'ai-powered-personal-knowledge-management-guide',
+    image: '/thumbnails/ai-powered-personal-knowledge-management-guide.png',
+    title: 'How to Build an AI-Powered Personal Knowledge Management System in 2026',
+    description: 'Stop losing good ideas. Learn how to use AI tools like NotebookLM, Obsidian, and smart capture apps to build a second brain that actually makes you smarter.',
+    category: 'tutorials',
+    tags: ['knowledge-management', 'productivity', 'notebooklm', 'obsidian', 'pkn'],
+    author: 'Cortex Team',
+    date: '2026-06-19',
+    readTime: '14 min read',
+    featured: false,
+    trending: true,
+    content: `
+Every day, you encounter valuable ideas — in articles you read, meetings you attend, podcasts you listen to, and random thoughts that strike at inconvenient times. Most of these ideas vanish within hours. You forget the insight from that blog post. You lose the connection between two concepts that struck you on different days. You spend 20 minutes searching your notes for something you know you wrote down somewhere.
+
+Personal knowledge management (PKM) is the practice of capturing, organizing, and retrieving your ideas systematically. AI has transformed this from a manual chore into something almost magical. Instead of just filing notes in folders, your AI-powered knowledge system can now connect ideas you never knew were related, summarize your own thinking back to you, and surface the right note at the right time.
+
+This guide shows you exactly how to set up an AI-powered knowledge system from scratch.
+
+## Why Traditional Note-Taking Fails
+
+The biggest problem with traditional notes is not capturing information — it is retrieving it later. You might have hundreds of notes scattered across notebooks, apps, and documents. When you need a specific insight, you either remember where you put it (unlikely) or search by keyword (which only works if you remember the exact words used).
+
+There is a deeper problem: isolation. Each note sits in its own silo. Your note from a podcast about behavioral economics has no connection to your note from a team meeting about user retention, even though both are about human decision-making. These invisible connections are where breakthroughs live — and traditional note-taking systems cannot find them.
+
+AI changes both problems. Semantic search understands meaning, not just keywords. AI systems can read all your notes and find conceptual connections you missed. And AI can synthesize information across multiple sources, turning isolated notes into coherent insights.
+
+## The Three Pillars of an AI-Powered Knowledge System
+
+An effective system rests on three pillars: capture, organize, and retrieve. AI enhances each one.
+
+### Capture: Getting Ideas Out of Your Head
+
+The goal of capture is to make it effortless to save ideas the moment they occur. If capturing a thought requires opening an app, creating a new file, and typing it out, you will not do it consistently. Friction kills knowledge systems.
+
+**Tools for frictionless capture:**
+
+- **Readwise Reader** — Save articles, PDFs, tweets, and podcast transcripts to one place. Its AI generates summaries and highlights key passages automatically. When you save an article, you get a condensed version you can review in 30 seconds.
+
+- **Otter.ai or Whisper** — Record meeting notes, voice memos, or lecture recordings. AI transcribes the audio and identifies key topics. You speak your ideas naturally; the AI turns them into searchable text.
+
+- **Apple Notes or Google Keep** — For quick captures on your phone. Keep it simple: type a few words, add a link, snap a photo of a whiteboard. You will process it later.
+
+The capture rule is simple: if it takes more than 10 seconds, your tool is too complicated. Capture now, organize later.
+
+### Organize: Making Sense of Your Notes
+
+Raw notes are not knowledge. They are raw material that needs processing. AI tools can dramatically accelerate the organization phase.
+
+**How AI helps with organization:**
+
+- **Auto-tagging** — Tools like Obsidian with the Smart Connections plugin or Notion AI can automatically tag and categorize your notes based on content. Instead of manually deciding whether a note belongs under "marketing" or "psychology," the AI suggests tags based on what the note actually says.
+
+- **Note linking** — AI can identify connections between your notes and suggest links. You might write a note about a productivity technique and a totally separate note about a podcast episode — AI notices they both discuss the same underlying principle and links them together.
+
+- **Summarization** — After a week of capturing notes, ask your AI tool to summarize everything you saved on a particular theme. This distills dozens of raw captures into a few key insights.
+
+**Organizational workflow:**
+
+Once per week, spend 20 minutes reviewing your raw captures. For each note, ask three questions: What is this about? What other notes does it connect to? What action, if any, should I take based on this? AI can suggest answers to all three questions, but your judgment is the final filter.
+
+### Retrieve: Finding What You Need When You Need It
+
+This is where AI-powered systems truly shine. Traditional search requires you to remember keywords. AI-powered semantic search understands meaning.
+
+**Google NotebookLM** is the best example of this capability. Upload your notes, documents, and sources, then ask questions in plain English. "What have I written about decision-making biases?" returns relevant excerpts from across all your uploaded materials, even if the exact phrase "decision-making biases" does not appear in any of them.
+
+NotebookLM goes further — it can generate podcast-style audio summaries of your sources, create study guides, and answer complex questions by synthesizing information across multiple documents.
+
+## Building Your System: A Practical Setup
+
+Here is a concrete setup that works well for most people, using free or low-cost tools:
+
+**Step 1: Choose Your Primary Note Repository**
+
+Pick one app as your "home base" for notes. The best options in 2026:
+
+- **Obsidian** — Best for power users who want total control. Stores notes as plain text files on your device. Huge plugin ecosystem, including AI-powered plugins. Free for personal use.
+
+- **Notion** — Best for people who want an all-in-one workspace with built-in databases, calendars, and AI features. Free tier is generous.
+
+- **Apple Notes or Google Keep** — Best for simplicity. If you do not need advanced features, these are perfectly adequate and always available.
+
+The key is to pick one and commit. A mediocre system you actually use beats a perfect system you abandon.
+
+**Step 2: Set Up AI-Powered Capture**
+
+Install Readwise Reader on your phone and browser. Configure it to save highlights and articles from your reading. Connect it to your note repository — Readwise can automatically sync highlights to Obsidian, Notion, or Apple Notes.
+
+Set up Otter.ai on your phone for voice notes and meeting recordings. Configure a simple system: create a folder for raw captures and a folder for processed notes.
+
+**Step 3: Add AI Enhancement Layer**
+
+Connect Google NotebookLM to your note repository. Periodically export your notes as markdown files and upload them to a NotebookLM notebook. Use this as your primary retrieval interface — when you need to find something, ask NotebookLM instead of searching manually.
+
+If you use Obsidian, install the Copilot plugin (powered by GPT-4) or the Smart Connections plugin. Copilot lets you chat with your notes from within Obsidian. Smart Connections automatically finds related notes and surfaces relevant context as you write.
+
+**Step 4: Establish a Weekly Review**
+
+Every week, set aside 30 minutes for a knowledge review. Ask your AI tool three questions:
+
+1. "What are the main themes from my notes this week?"
+2. "What connections exist between new notes and older ones?"
+3. "What ideas should I act on or explore further?"
+
+This review transforms raw captures into genuine insights and ensures your knowledge system compounds over time.
+
+## Common Mistakes to Avoid
+
+**Collecting without reviewing.** Saving articles is not learning. If you capture 50 articles per week but never process them, you have a storage system, not a knowledge system. Limit your captures to what you can realistically review.
+
+**Over-engineering the system.** Spending three hours organizing note tags is not knowledge management — it is procrastination in disguise. Set up a simple system and improve it gradually as you discover what you actually need.
+
+**Ignoring the retrieval test.** The value of a knowledge system is not measured by how many notes you have, but by how quickly you can find and use them when needed. If you cannot find a relevant note within 30 seconds, your system needs work.
+
+**Trying to use every tool.** NotebookLM, Obsidian, Notion, Readwise, Otter.ai — do not use all of them at once. Start with one note repository and one capture method. Add tools only when you have a clear gap that needs filling.
+
+## The Compounding Effect
+
+The real magic of an AI-powered knowledge system is compounding. After six months, you will have hundreds of notes, all semantically searchable, all interconnected. When you start a new project, your AI tool can surface everything you have ever written about related topics. When you encounter a problem, it can find the solution you captured from a podcast you listened to three months ago.
+
+This compounding effect is why knowledge management matters. Individual notes are forgettable. A connected body of knowledge, enhanced by AI, becomes an intellectual asset that grows more valuable over time.
+
+You do not need to start with a perfect system. Capture your ideas, process them weekly, and let AI do the heavy lifting of connection and retrieval. Start today with a single tool and a simple habit. Your future self will thank you.
+    `
+  }
 ];
